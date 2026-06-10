@@ -1,0 +1,1106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legal, Compliance & Litigation — ACC India Private Limited (mock)</title>
+<style>
+  :root{
+    --bg:#f7f6f3;
+    --panel:#ffffff;
+    --ink:#1a1d1f;
+    --ink2:#3a3f44;
+    --muted:#6b7178;
+    --line:#e5e2db;
+    --line2:#d6d2c8;
+    --accent:#1f3a4d;
+    --accent2:#2b5970;
+
+    --crit:#9b1c1c;
+    --crit-bg:#fceaea;
+    --amber:#a25e0a;
+    --amber-bg:#fdf1de;
+    --soft:#7b6500;
+    --soft-bg:#fcf6da;
+    --ok:#1f6b3a;
+    --ok-bg:#e6f3ea;
+    --info:#1d4e7b;
+    --info-bg:#e6eff7;
+
+    --p42:#0a4f7a;
+    --p42-bg:#dfeaf3;
+    --pdf:#5a2a82;
+    --pdf-bg:#ede2f5;
+    --xmod:#8a6500;
+    --xmod-bg:#fbf0c9;
+    --judg:#5d3b00;
+    --judg-bg:#f3e3c1;
+    --gap:#7a1f1f;
+    --gap-bg:#f7d9d9;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif}
+  a{color:var(--accent2)}
+  .wrap{max-width:1340px;margin:0 auto;padding:24px}
+
+  /* ---------- masthead ---------- */
+  .mast{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding:20px 24px;background:linear-gradient(180deg,#fff,#fbfaf6);border:1px solid var(--line);border-radius:12px;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+  .mast h1{margin:0 0 4px;font-size:22px;letter-spacing:-.01em}
+  .mast .sub{color:var(--muted);font-size:13px}
+  .mast .meta{font-size:12px;color:var(--muted);text-align:right;line-height:1.55}
+  .mast .meta b{color:var(--ink2)}
+
+  /* ---------- legend ---------- */
+  .legend{margin:18px 0 8px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:10px}
+  .legend h3{margin:0 0 8px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2)}
+  .legend .row{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start}
+  .legend .item{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;max-width:240px}
+  .legend .item .badge{margin-top:1px;flex:0 0 auto}
+  .legend .item .desc{color:var(--ink2)}
+
+  /* ---------- tabs ---------- */
+  .tabs{display:flex;gap:6px;margin:20px 0 0;border-bottom:1px solid var(--line)}
+  .tab{padding:10px 14px;border:1px solid var(--line);border-bottom:none;background:#efece4;color:var(--ink2);font-weight:600;font-size:13px;border-top-left-radius:8px;border-top-right-radius:8px;cursor:pointer}
+  .tab.active{background:#fff;color:var(--ink);box-shadow:0 -1px 0 #fff inset}
+  .panel{display:none;background:#fff;border:1px solid var(--line);border-top:none;border-radius:0 0 12px 12px;padding:22px}
+  .panel.active{display:block}
+
+  /* ---------- KPI band ---------- */
+  .kpi-band{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+  .kpi{background:#fbfaf5;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .kpi .label{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}
+  .kpi .value{font-size:22px;font-weight:700;color:var(--ink);margin-top:4px;line-height:1.15}
+  .kpi.crit{background:var(--crit-bg);border-color:#f0c2c2}
+  .kpi.crit .value{color:var(--crit)}
+  .kpi.amber{background:var(--amber-bg);border-color:#ecd2a3}
+  .kpi.amber .value{color:var(--amber)}
+  .kpi.ok{background:var(--ok-bg);border-color:#bfddc9}
+  .kpi.ok .value{color:var(--ok)}
+  .kpi-group{margin-bottom:12px}
+  .kpi-group .grp-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:4px 2px 6px}
+
+  /* ---------- blocks ---------- */
+  h2.section{margin:24px 0 4px;font-size:16px;color:var(--accent);letter-spacing:-.005em}
+  h2.section .pip{font-size:10.5px;background:#e9eef3;color:var(--accent);padding:2px 7px;border-radius:99px;margin-left:8px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;vertical-align:middle}
+  .block{margin:18px 0 24px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+  .block .bhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:12px 14px;background:#faf8f2;border-bottom:1px solid var(--line)}
+  .block .bhead h3{margin:0;font-size:14px;color:var(--ink)}
+  .block .bhead .right{font-size:12px;color:var(--muted)}
+  .block .bbody{padding:0}
+  .block table{width:100%;border-collapse:collapse;font-size:13px}
+  .block th,.block td{padding:9px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+  .block th{background:#fbfaf5;color:var(--ink2);font-weight:600;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em}
+  .block tr:last-child td{border-bottom:none}
+  .block .empty{padding:20px 14px;color:var(--muted);font-style:italic;background:#fcfbf7}
+
+  /* ---------- chips / badges ---------- */
+  .badge{display:inline-block;padding:2px 7px;border-radius:99px;font-size:10.5px;letter-spacing:.04em;font-weight:700;text-transform:uppercase;line-height:1.5;border:1px solid transparent;white-space:nowrap}
+  .b-crit{background:var(--crit-bg);color:var(--crit);border-color:#f0c2c2}
+  .b-amber{background:var(--amber-bg);color:var(--amber);border-color:#ecd2a3}
+  .b-soft{background:var(--soft-bg);color:var(--soft);border-color:#ebdf9c}
+  .b-ok{background:var(--ok-bg);color:var(--ok);border-color:#bfddc9}
+  .b-info{background:var(--info-bg);color:var(--info);border-color:#bcd2e6}
+
+  .src{display:inline-block;padding:1px 6px;border-radius:4px;font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid transparent;line-height:1.55;white-space:nowrap;vertical-align:baseline}
+  .src-p42{background:var(--p42-bg);color:var(--p42);border-color:#b9d1e2}
+  .src-pdf{background:var(--pdf-bg);color:var(--pdf);border-color:#d1bce0}
+  .src-xmod{background:var(--xmod-bg);color:var(--xmod);border-color:#e9d089}
+  .src-judg{background:var(--judg-bg);color:var(--judg);border-color:#d5b46e}
+  .src-gap{background:var(--gap-bg);color:var(--gap);border-color:#e6acac}
+  .src + .src{margin-left:4px}
+
+  /* compact source line under values */
+  .prov{display:block;font-size:11px;color:var(--muted);margin-top:4px;line-height:1.45}
+  .prov b{color:var(--ink2);font-weight:600}
+
+  /* flag callouts */
+  .callout{display:flex;gap:12px;padding:12px 14px;border-radius:10px;border:1px solid;margin:10px 0}
+  .callout.crit{background:var(--crit-bg);border-color:#f0c2c2}
+  .callout.amber{background:var(--amber-bg);border-color:#ecd2a3}
+  .callout.soft{background:var(--soft-bg);border-color:#ebdf9c}
+  .callout .lbl{flex:0 0 88px;font-weight:700;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase}
+  .callout .body{font-size:13px;color:var(--ink)}
+  .callout .body b{color:var(--ink)}
+  .callout.crit .lbl{color:var(--crit)}
+  .callout.amber .lbl{color:var(--amber)}
+  .callout.soft .lbl{color:var(--soft)}
+
+  /* trend / heatmap (mock) */
+  .heatmap{display:grid;gap:2px;font-size:11px;background:#f6f3eb;padding:8px;border-radius:8px;overflow-x:auto}
+  .heatmap .row{display:grid;grid-template-columns:200px repeat(12,1fr);gap:2px;align-items:center}
+  .heatmap .row .lbl{font-size:11.5px;color:var(--ink2);padding-right:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .heatmap .cell{height:22px;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:600}
+  .cell.g{background:#5ea177}
+  .cell.a{background:#d8a64a}
+  .cell.r{background:#b14a4a}
+  .cell.bk{background:#2c2c2c}
+  .cell.gy{background:#cfc9bd;color:#555}
+  .heatmap-key{display:flex;gap:14px;font-size:11.5px;color:var(--muted);margin-top:6px}
+  .heatmap-key span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+  .heatmap-key .g::before{background:#5ea177}
+  .heatmap-key .a::before{background:#d8a64a}
+  .heatmap-key .r::before{background:#b14a4a}
+  .heatmap-key .bk::before{background:#2c2c2c}
+  .heatmap-key .gy::before{background:#cfc9bd}
+
+  /* CARO matrix */
+  .caro-grid{display:grid;grid-template-columns:60px 1fr 100px 100px 100px 100px 100px;gap:6px;font-size:12px;padding:10px 0}
+  .caro-grid .h{font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;padding:6px 8px}
+  .caro-grid .cl{padding:6px 8px;background:#fbfaf5;border-radius:6px;display:flex;align-items:center;font-weight:700;color:var(--ink2)}
+  .caro-grid .desc{padding:6px 8px;display:flex;align-items:center;color:var(--ink2)}
+  .caro-grid .cell{padding:6px 8px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600}
+  .caro-grid .cell.adv{background:var(--crit-bg);color:var(--crit)}
+  .caro-grid .cell.cmp{background:var(--ok-bg);color:var(--ok)}
+  .caro-grid .cell.na{background:#eee9dd;color:#8a8676}
+  .caro-grid .cell.gap{background:var(--gap-bg);color:var(--gap)}
+  .caro-grid .cell.adv-soft{background:var(--soft-bg);color:var(--soft)}
+  .caro-grid .cl.critical{outline:2px solid #c47a7a}
+
+  /* opinion timeline */
+  .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:8px 0 4px}
+  .tl{padding:10px 12px;border-radius:8px;background:#fbfaf5;border:1px solid var(--line);text-align:center}
+  .tl .fy{font-size:11px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+  .tl .op{font-size:13px;font-weight:700;margin-top:4px}
+  .tl.unq{background:var(--ok-bg);border-color:#bfddc9;color:var(--ok)}
+  .tl.gap{background:var(--gap-bg);border-color:#e6acac;color:var(--gap)}
+
+  /* small text */
+  .note{font-size:12px;color:var(--muted);margin:8px 0}
+  .ftn{font-size:11.5px;color:var(--muted);padding:8px 14px;background:#fcfbf7;border-top:1px solid var(--line)}
+
+  /* right-rail card */
+  .twocol{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:flex-start}
+  .rail{position:sticky;top:12px}
+  .rail .card{background:#fbfaf5;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+  .rail .card h4{margin:0 0 6px;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+  .rail .card ul{margin:0;padding-left:18px;font-size:12.5px;color:var(--ink2)}
+  .rail .card li{margin:5px 0}
+  .rail .chip{display:inline-block;background:#e9eef3;color:var(--accent);padding:3px 8px;border-radius:99px;font-size:11.5px;font-weight:600;margin:3px 4px 0 0}
+  .rail .chip.crit{background:var(--crit-bg);color:var(--crit)}
+  .rail .chip.amber{background:var(--amber-bg);color:var(--amber)}
+
+  /* small util */
+  .muted{color:var(--muted)}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px}
+  .pull{font-weight:700;color:var(--ink)}
+  details{margin:6px 0}
+  details > summary{cursor:pointer;font-size:12.5px;color:var(--accent2)}
+  details > div{padding:8px 12px;background:#fbfaf5;border:1px solid var(--line);border-radius:6px;margin-top:6px;font-size:12.5px;color:var(--ink2)}
+  hr.soft{border:none;border-top:1px dashed var(--line2);margin:14px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- MASTHEAD -->
+  <div class="mast">
+    <div>
+      <h1>Legal, Compliance &amp; Litigation Module</h1>
+      <div class="sub"><b>ACC INDIA PRIVATE LIMITED</b> &middot; CIN <span class="mono">U45400DL2012PTC241533</span> &middot; PAN <span class="mono">AAKCA9219Q</span> &middot; Active, Active&nbsp;Compliant <span class="badge b-ok">OK</span></div>
+      <div class="sub" style="margin-top:6px">
+        Real Estate &middot; Builders &amp; Developers &middot; Incorporated 3&nbsp;Sep&nbsp;2012 (Pvt. Ltd.)
+        &middot; Paid-up ₹1.41&nbsp;Cr &middot; Last AGM 30&nbsp;Sep&nbsp;2025
+        <span class="src src-p42" title="U45400DL2012PTC241533.pdf, Key Statistics, p.1">P42 · p.1</span>
+      </div>
+    </div>
+    <div class="meta">
+      <div><b>Mock for:</b> Pre-IM banker DD workspace</div>
+      <div><b>Spec:</b> DD_Legal_Compliance_v2.md (4 submodules)</div>
+      <div><b>Sources bundled:</b> Probe42 (84p), Auditor's Report FY25 (44p), AOC-4 FY25 form (8p), AGM Notice FY25 (20p)</div>
+      <div><b>Excluded by request:</b> <span class="mono">acc/Prs/</span></div>
+    </div>
+  </div>
+
+  <!-- LEGEND / KEY -->
+  <div class="legend">
+    <h3>Source &amp; provenance key — every value on this mock carries one of these</h3>
+    <div class="row">
+      <div class="item"><span class="src src-p42">P42</span><span class="desc">Extracted directly from <b>U45400DL2012PTC241533.pdf</b> (Probe42 report). Page reference shown.</span></div>
+      <div class="item"><span class="src src-pdf">PDF</span><span class="desc">Extracted from an AOC-4 attachment in the ACC folder — typically the FY25 Independent Auditor's Report (<b>document-8.pdf</b>), AOC-4 form (<b>document-9.pdf</b>), or AGM Notice (<b>document-7.pdf</b>).</span></div>
+      <div class="item"><span class="src src-xmod">X-MOD</span><span class="desc">Comes from a <b>different DD module</b> (e.g. M&amp;G, About&nbsp;Company). Filled here for illustration; real workspace pulls it via the cross-module contract.</span></div>
+      <div class="item"><span class="src src-judg">JUDG</span><span class="desc">Banker or engineer <b>judgment value</b> (e.g. severity tag, threshold). Note attached explaining the call.</span></div>
+      <div class="item"><span class="src src-gap">GAP</span><span class="desc"><b>Cannot be filled</b> with the documents provided. The exact source needed is named so the gap is auditable.</span></div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" data-tab="s1">Submodule 1 — Litigation Register</div>
+    <div class="tab" data-tab="s2">Submodule 2 — Director Legal &amp; Regulatory</div>
+    <div class="tab" data-tab="s3">Submodule 3 — Statutory, Tax &amp; Labour</div>
+    <div class="tab" data-tab="s4">Submodule 4 — Auditor Opinion &amp; CARO</div>
+  </div>
+
+  <!-- =============== SUBMODULE 1 =============== -->
+  <div class="panel active" id="s1">
+
+    <div class="twocol">
+      <div>
+
+        <!-- KPI band -->
+        <div class="kpi-band">
+          <div class="kpi"><div class="label">Pending Cases</div><div class="value">11</div><div class="prov"><b>P42 · p.37</b> · 7 against + 4 by</div></div>
+          <div class="kpi"><div class="label">Disposed Cases</div><div class="value">15</div><div class="prov"><b>P42 · p.37–38</b> · 10 against + 5 by</div></div>
+          <div class="kpi"><div class="label">Cases AGAINST</div><div class="value">17</div><div class="prov"><b>P42 · p.37</b></div></div>
+          <div class="kpi"><div class="label">Cases BY</div><div class="value">9</div><div class="prov"><b>P42 · p.37–38</b></div></div>
+          <div class="kpi crit"><div class="label">NCLT/IBC Pending Against</div><div class="value">1</div><div class="prov"><b>P42 · p.37</b> · CP(IB)-719/2023</div></div>
+          <div class="kpi amber"><div class="label">Criminal Pending Against</div><div class="value">1</div><div class="prov"><b>P42 · p.37</b> · 1 NI Act, 0 other</div></div>
+          <div class="kpi amber"><div class="label">Regulator-initiated Pending Against</div><div class="value">1</div><div class="prov"><b>P42 · p.37</b> · ACIT (IT Dept)</div></div>
+          <div class="kpi"><div class="label">Probable + Unverified</div><div class="value">2</div><div class="prov"><b>P42 · p.38</b> · 1 probable + 1 unverified</div></div>
+        </div>
+
+        <!-- Flag callouts -->
+        <div class="callout crit">
+          <div class="lbl">Critical</div>
+          <div class="body">
+            <b>Pending insolvency petition against the company.</b> <span class="mono">C.P.(IB) — 719/2023</span> at NCLT, petitioner <b>CHINTAMANI FABRICATION PRIVATE LIMITED</b>. Last hearing 8 May 2024 (~756 days ago — possibly merged with disposed entries 719(ND)/2023 and 1613(ND)/2024; admission status unclear from pre-IM data). Auto-generated management question queued.
+            <span class="src src-p42" style="margin-left:6px">P42 · p.37</span>
+            <span class="src src-judg" style="margin-left:4px">JUDG</span>
+            <details><summary>Why JUDG: the disposed entries under same petitioner</summary><div>P42 lists two disposed NCLT cases with the same petitioner (Chintamani Fabrication) and same hearing date (8 May 2024). Either the pending entry is a duplicate / consolidated case that has actually been disposed, or this is a re-filed petition. Pre-IM, we cannot resolve from public data. Engg note: case-number normalization may merge 719/2023 ≡ 719(ND)2023. <b>Banker must verify with company counsel before treating as live IBC distress.</b></div></details>
+          </div>
+        </div>
+
+        <div class="callout amber">
+          <div class="lbl">Amber</div>
+          <div class="body"><b>Recurring counterparty cluster.</b> Three names recur: <b>Piyushbhai Vajubhai Kapadia</b> (4 cases — all disposed); <b>Sunidhi Estates Pvt Ltd</b> (mutual litigation — 1 against, 1 by, both pending); <b>Chintamani Fabrication</b> (3 IBC cases, all 8 May 2024 date — see Critical above). Soft signal of dispute pattern; bankers should probe nature of relationship. <span class="src src-p42" style="margin-left:6px">P42 · p.37–38</span></div>
+        </div>
+
+        <div class="callout soft">
+          <div class="lbl">Soft</div>
+          <div class="body"><b>3 pending cases have last hearing &gt; 365 days ago</b> — possibly dormant. CS DJ/683/2021 (1113d), Misc.Case (Com)/15/2024 (655d), CS/4194/2024 (583d). Plus 1 unverified record (<span class="mono">CO 72/DEL/2023</span>, ITAT) where court portal was unavailable at scan time. <span class="src src-p42" style="margin-left:6px">P42 · p.37–38</span></div>
+        </div>
+
+        <!-- Block 1A: Pending against -->
+        <h2 class="section">Block 1A — Pending Cases Filed Against the Company <span class="pip">7 rows</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: P42 Legal History → Cases Filed Against → Pending</h3><div class="right"><span class="src src-p42">P42 · p.37</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>Case No.</th><th>Category (S45)</th><th>Court</th><th>Petitioner</th><th>Initiator Type</th><th>Last Hearing</th><th>Days Since</th><th>Severity</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="mono">C.P. (IB) – 719/2023</td>
+                  <td>NCLT / IBC</td>
+                  <td>NCLT</td>
+                  <td>Chintamani Fabrication Pvt Ltd</td>
+                  <td>Commercial</td>
+                  <td>8 May 2024</td>
+                  <td>756</td>
+                  <td><span class="badge b-crit">Critical</span> <span class="src src-judg" title="Severity = Critical because IBC pending against company; rule from spec Error states.">JUDG</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">CS DJ/683/2021</td><td>Civil</td><td>District &amp; Sessions Judge, South-East, Saket</td><td>Mukesh Kumar Gautam</td><td>Commercial</td><td>17 May 2022</td><td>1,113</td>
+                  <td><span class="badge b-soft">Soft · dormant</span> <span class="src src-judg" title="Pending case with >365 days since last hearing → dormant flag per spec.">JUDG</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">CS/4194/2024</td><td>Civil</td><td>District &amp; Sessions Judge, New Delhi, PHC</td><td>Cornish Aluminium India P. Ltd.</td><td>Commercial</td><td>28 Oct 2024</td><td>583</td>
+                  <td><span class="badge b-soft">Soft · dormant</span> <span class="src src-judg">JUDG</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">CNS/3216/2023</td><td>NI Act / Criminal</td><td>Metropolitan Magistrate, Calcutta</td><td>Shree Shyam Ply &amp; Laminates</td><td>Commercial</td><td>23 Jul 2025</td><td>315</td>
+                  <td><span class="badge b-amber">Amber · NI Act</span> <span class="src src-judg" title="Only 1 NI Act pending so cluster threshold not reached; severity Amber per criminal/NI judgment.">JUDG</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">ITA 650/DEL/2020</td><td>Income Tax Appeals</td><td>ITAT</td><td>ACIT, Circle-1(1), New Delhi</td><td><b>Regulator</b> · IT Dept <span class="src src-judg" title="Petitioner string matched against regulator vocabulary (ACIT)">JUDG</span></td><td>—</td><td>—</td>
+                  <td><span class="badge b-amber">Amber · regulator</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">Commercial&nbsp;Summary&nbsp;Suit/100397/2025</td><td>Others / Commercial</td><td>City Civil Court, Mumbai</td><td>Regalia Solutions Pvt Ltd thr Ashok Sanghavi</td><td>Commercial</td><td>5 Jan 2026</td><td>149</td>
+                  <td><span class="badge b-soft">Soft</span> <span class="src src-judg">JUDG</span></td>
+                </tr>
+                <tr>
+                  <td class="mono">Misc. Case (Com)/15/2024</td><td>Others / Commercial</td><td>Commercial Court, Alipore</td><td>Sunidhi Estates Pvt Ltd</td><td>Commercial</td><td>17 Aug 2024</td><td>655</td>
+                  <td><span class="badge b-soft">Soft · dormant + cluster</span> <span class="src src-judg" title="Recurring counterparty: Sunidhi Estates also appears in Block 1B as respondent — mutual litigation.">JUDG</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="ftn"><b>Days-since-hearing</b> computed from today 3&nbsp;Jun&nbsp;2026 minus Date of Last Hearing. <b>Initiator Type</b> tagged by regulator vocabulary; ACIT matched IT-Dept pattern (see Logic 4). <b>Severity tag rules deferred to engg-phase tuning</b> — values shown are placeholder calls; revisit per Engg follow-ups.</div>
+          </div>
+        </div>
+
+        <!-- Block 1B: Pending by -->
+        <h2 class="section">Block 1B — Pending Cases Filed By the Company <span class="pip">4 rows</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: P42 Legal History → Cases Filed By → Pending</h3><div class="right"><span class="src src-p42">P42 · p.37</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>Case No.</th><th>Category</th><th>Court</th><th>Respondent</th><th>Respondent Type</th><th>Last Hearing</th><th>Days Since</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">WTAX/2660/2025</td><td>Taxation Matters</td><td>High Court of Allahabad</td><td>STATE OF U.P. AND ANOTHER</td><td><b>Regulator</b> · State Gov <span class="src src-judg">JUDG</span></td><td>29 May 2025</td><td>370</td></tr>
+                <tr><td class="mono">ITA 4833/DEL/2024</td><td>Income Tax Appeals</td><td>ITAT</td><td>ACIT, Circle-1(1), Delhi</td><td><b>Regulator</b> · IT Dept</td><td>12 Aug 2025</td><td>295</td></tr>
+                <tr><td class="mono">WPA/27195/2024</td><td>Writs and Regulatory Matters</td><td>HC Calcutta — Appellate Side</td><td>Asst Comm. of State Tax, Ballygunge &amp; Ors</td><td><b>Regulator</b> · State Tax</td><td>29 Nov 2024</td><td>551</td></tr>
+                <tr><td class="mono">MEx (Com)/11/2023</td><td>Others</td><td>Commercial Court, Alipore</td><td>Sunidhi Estates Pvt. Ltd.</td><td>Commercial · <i>cluster</i></td><td>30 Nov 2023</td><td>915</td></tr>
+              </tbody>
+            </table>
+            <div class="ftn">3 of 4 By-cases are <b>against regulators</b> (1 state govt, 1 IT Dept, 1 state-tax). Bankers traditionally treat IT/Tax appeals as a separate workflow lens — surfaced via Respondent Type.</div>
+          </div>
+        </div>
+
+        <!-- Block 1C/1D: Disposed -->
+        <h2 class="section">Block 1C — Disposed Cases Filed Against <span class="pip">10 rows</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: P42 Legal History → Cases Filed Against → Disposed</h3><div class="right"><span class="src src-p42">P42 · p.37–38</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>Case No.</th><th>Category</th><th>Court</th><th>Petitioner</th><th>Initiator Type</th><th>Judgement Date</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">1613(ND)2024</td><td>NCLT / IBC</td><td>NCLT</td><td>Chintamani Fabrication Pvt Ltd</td><td>Commercial · cluster</td><td>8 May 2024</td></tr>
+                <tr><td class="mono">719(ND)2023</td><td>NCLT / IBC</td><td>NCLT</td><td>Chintamani Fabrication Pvt Ltd</td><td>Commercial · cluster</td><td>8 May 2024</td></tr>
+                <tr><td class="mono">Cr Rev/196/2018</td><td>Criminal Appeals</td><td>District &amp; Sessions Judge, Saket</td><td>Ashok Kumar Singh</td><td>Commercial</td><td>1 Jun 2018</td></tr>
+                <tr><td class="mono">MS/295/2023</td><td>Civil</td><td>City Civil Court, Calcutta</td><td>Kiran Transport Pvt Ltd</td><td>Commercial</td><td>22 Jul 2024</td></tr>
+                <tr><td class="mono">SPCS/398/2014</td><td>Civil</td><td>Civil Court, Surat</td><td>Piyushbhai Vajubhai Kapadia</td><td>Commercial · cluster (4)</td><td>10 Mar 2016</td></tr>
+                <tr><td class="mono">SPCS/577/2016</td><td>Civil</td><td>Civil Court, Surat</td><td>Piyushbhai Vajubhai Kapadiya</td><td>Commercial · cluster (4)</td><td>15 Apr 2017</td></tr>
+                <tr><td class="mono">CM(M)/570/2014</td><td>Civil</td><td>High Court of Delhi</td><td>Kamal Vihar Cooperative Group</td><td>Commercial</td><td>20 Mar 2015</td></tr>
+                <tr><td class="mono">SMCST/458/2016</td><td>NI Act / Criminal</td><td>Small Cause Court, Surat</td><td>Piyushbhai Vajubhai Kapadia</td><td>Commercial · cluster (4)</td><td>20 Dec 2016</td></tr>
+                <tr><td class="mono">SS Cases/4207811/2024</td><td>NI Act / Criminal</td><td>Metro Magistrate, Shindewadi, Mumbai</td><td>L.A M/West/Ward (Pest Control Office)</td><td><b>Regulator</b> · BMC Local Authority <span class="src src-judg">JUDG</span></td><td>4 Dec 2024</td></tr>
+                <tr><td class="mono">CMA SC/84/2017</td><td>Others</td><td>Civil Court, Surat</td><td>Piyushbhai Vajubhai Kapadiya</td><td>Commercial · cluster (4)</td><td>23 Jun 2017</td></tr>
+              </tbody>
+            </table>
+            <div class="ftn">Note (per spec): <i>"Order disposition / quantum not consistently available pre-IM. Disposed register retained for pattern analysis only."</i> &middot; <b>Pattern:</b> Piyushbhai Kapadia(/Kapadiya) is a cluster of 4 cases in Surat between 2014–2017 — surfaced for banker investigation.</div>
+          </div>
+        </div>
+
+        <h2 class="section">Block 1D — Disposed Cases Filed By <span class="pip">5 rows</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: P42 Legal History → Cases Filed By → Disposed</h3><div class="right"><span class="src src-p42">P42 · p.37–38</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>Case No.</th><th>Category</th><th>Court</th><th>Respondent</th><th>Respondent Type</th><th>Judgement Date</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">ARB/193/2019</td><td>Arbitration</td><td>District &amp; Sessions Court, Gurgaon</td><td>M/S Manglam Multiplex Pvt Ltd</td><td>Commercial</td><td>9 Dec 2019</td></tr>
+                <tr><td class="mono">ARBP/72/2023</td><td>Arbitration</td><td>HC Orissa</td><td>Khushi Realcon Pvt Ltd</td><td>Commercial</td><td>19 Jul 2024</td></tr>
+                <tr><td class="mono">RCS/62/2014</td><td>Civil</td><td>Civil Court, Vadodara</td><td>Ambalal Chaganlal Patanwadiya</td><td>Commercial</td><td>6 Apr 2018</td></tr>
+                <tr><td class="mono">Money Suit/53/2022</td><td>Civil</td><td>Commercial Court, Alipore</td><td>Sunidhi Estates Pvt Ltd</td><td>Commercial · cluster</td><td>21 Apr 2023</td></tr>
+                <tr><td class="mono">SS/5800563/2020</td><td>NI Act</td><td>Addl Metro Magistrate, Bandra</td><td>Connectrix India + Tony Hickmott + others</td><td>Commercial</td><td>2 Apr 2024</td></tr>
+                <tr><td class="mono">CT CASES/625146/2016</td><td>NI Act</td><td>Chief Metro Magistrate, Saket</td><td>Ashok Kumar Singh</td><td>Commercial</td><td>11 Mar 2019</td></tr>
+                <tr><td class="mono">WP/2329/2018</td><td>Writs and Regulatory</td><td>HC Bombay</td><td>State of Maharashtra &amp; 4 Ors</td><td><b>Regulator</b> · State Gov</td><td>30 Jul 2018</td></tr>
+                <tr><td class="mono">Arbitration Petition/49/2023</td><td>Others</td><td>Civil Judge Sr Division, Khurda</td><td>Khushi Realcon Pvt Ltd</td><td>Commercial</td><td>8 Nov 2023</td></tr>
+                <tr><td class="mono">Arb A/16/2023</td><td>Others</td><td>District &amp; Sessions, Khurda</td><td>Khushi Realcon Pvt Ltd</td><td>Commercial</td><td>12 Mar 2024</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Block 1E: Consolidation -->
+        <h2 class="section">Block 1E — Cases for Consolidation of Corporate Affairs <span class="pip">0 rows</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: P42 Legal History → CCA</h3><div class="right"><span class="src src-p42">P42 · p.38</span></div></div>
+          <div class="bbody"><div class="empty">No pending or disposed corporate-restructuring matters on record. (No scheme of arrangement, merger, demerger, or capital reduction tracked in NCLT against this CIN.)</div></div>
+        </div>
+
+        <!-- Block 1F: Probable + Unverified -->
+        <h2 class="section">Block 1F — Probable Cases &amp; Unverified Court Records <span class="pip">2 rows · low confidence</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: P42 Legal History → Probable + Unverified</h3><div class="right"><span class="src src-p42">P42 · p.38</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>Case No.</th><th>Type</th><th>Court</th><th>Parties</th><th>Date</th><th>Confidence</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">Sum.Civ.Suit/492/2022</td><td>Probable · Civil</td><td>Civil Court Sr Division, Thane</td><td>TNA Readymix vs <i>ACC Indian Pvt Ltd</i> (name variant) + Rohit Mikati + Anuruddha Ray (as directors)</td><td>9 Dec 2023</td><td><span class="badge b-soft">Low — name variant</span></td></tr>
+                <tr><td class="mono">CO 72/DEL/2023</td><td>Unverified · ITAT</td><td>ITAT</td><td>ACC India Pvt Ltd vs ACIT Circle-1(1)</td><td>—</td><td><span class="badge b-soft">Low — court portal down at scan</span></td></tr>
+              </tbody>
+            </table>
+            <div class="ftn"><b>Probable case observation:</b> name appears as "ACC Indian Pvt Ltd" (note the "Indian"); director names match (Aniruddha Ray + Rohit/Rachid Mikati). Likely the same entity — banker should confirm. <span class="src src-judg">JUDG</span></div>
+          </div>
+        </div>
+
+        <!-- Block 1G: Trend chart -->
+        <h2 class="section">Block 1G — Litigation Trend (last 5 FYs) <span class="pip">mock</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>New cases per FY, split AGAINST vs BY (filing year extracted from case-number regex)</h3><div class="right"><span class="src src-p42">P42</span> <span class="src src-judg">JUDG · regex</span></div></div>
+          <div class="bbody" style="padding:14px">
+            <div class="mono" style="font-size:12px;color:var(--muted);margin-bottom:8px">FY21   FY22   FY23   FY24   FY25</div>
+            <div class="mono" style="font-size:13px;line-height:1.8">
+              AGAINST&nbsp;&nbsp; 0      1▰    2▰▰   2▰▰   1▰<br>
+              BY&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0      0      1▱    1▱    1▱
+            </div>
+            <div class="note" style="margin-top:10px"><b>Filing-year extraction (mock):</b> Applied regex set against case numbers — <span class="mono">ITA 650/DEL/2020</span>→2020, <span class="mono">C.P. (IB) – 719/2023</span>→2023, <span class="mono">CS DJ/683/2021</span>→2021, <span class="mono">CS/4194/2024</span>→2024, <span class="mono">CNS/3216/2023</span>→2023, <span class="mono">WTAX/2660/2025</span>→2025, etc. <b>2 cases excluded from trend:</b> <span class="mono">MEx (Com)/11/2023</span> (year parseable but disputed), and <span class="mono">Commercial Summary Suit/100397/2025</span> (filed year 2025 but format atypical). <span class="src src-judg">JUDG</span></div>
+            <div class="note"><b>Direction (judgment):</b> AGAINST series shows mild rising trend FY21→FY23, plateaued FY24, with an IBC case in FY23 driving severity. BY series is stable at 1/yr (mostly tax appeals).</div>
+            <div class="note"><b>Engg follow-up:</b> Per spec Engg-follow-ups, regex pattern set needs hardening (multiple variants observed: <span class="mono">SMCST/458/2016</span>, <span class="mono">WP/2329/2018</span>, <span class="mono">Sum.Civ.Suit/492/2022</span>, <span class="mono">CT CASES/625146/2016</span>). Trend chart is illustrative — not production-ready.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right rail -->
+      <div class="rail">
+        <div class="card">
+          <h4>Cross-module exports</h4>
+          <span class="chip crit">IBC pending = 1 → Credit History (distress)</span>
+          <span class="chip">Regulator-initiated count → Final Synthesizer</span>
+          <span class="chip amber">Pattern clusters (3) → Mgmt Q queue</span>
+        </div>
+        <div class="card">
+          <h4>Management questions queued</h4>
+          <ul>
+            <li>CP(IB)–719/2023 — current admission status &amp; whether 719(ND)/1613(ND) dispositions resolved the petition.</li>
+            <li>Sunidhi Estates — nature of the mutual dispute (one AGAINST + one BY pending).</li>
+            <li>Piyushbhai Kapadia — 4-case Surat cluster — settle relationship.</li>
+            <li>CNS/3216/2023 (NI Act, Calcutta) — underlying cheque, parties, amount.</li>
+            <li>CO 72/DEL/2023 (ITAT unverified) — re-verify against court portal.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Engg follow-ups visible in this view</h4>
+          <ul>
+            <li><b>Severity rule-set</b> (1A column) — placeholder, needs tuning.</li>
+            <li><b>Filing-year regex</b> (1G) — pattern set hardening pending.</li>
+            <li><b>Cluster threshold</b> (≥3) — confirm vs revenue/industry archetype.</li>
+            <li><b>Order summary extraction</b> for disposed cases — v1.1, eCourts feasibility open.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Gaps in this submodule</h4>
+          <ul>
+            <li><span class="src src-gap">GAP</span> <b>IM-disclosed material litigation schedule</b> — post-IM only. Not applicable pre-IM. Reconciliation logic (Logic 10) cannot run yet.</li>
+            <li><span class="src src-gap">GAP</span> <b>Court order PDFs</b> for disposed cases — eCourts scrape deferred to v1.1.</li>
+            <li><span class="src src-gap">GAP</span> <b>Claim amounts</b> — P42 does not surface ₹ amounts per case for non-financial-dispute matters.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== SUBMODULE 2 =============== -->
+  <div class="panel" id="s2">
+    <div class="twocol">
+      <div>
+
+        <!-- KPI -->
+        <div class="kpi-band">
+          <div class="kpi"><div class="label">Total Directors</div><div class="value">2</div><div class="prov"><b>X-MOD</b> M&amp;G module · pre-mocked from <b>P42 · p.14</b></div></div>
+          <div class="kpi ok"><div class="label">Disqualified</div><div class="value">0</div><div class="prov"><b>PDF · doc-8 §143(3)(e), p.4</b> · auditor written-rep confirms no Sec 164(2) disqualification</div></div>
+          <div class="kpi"><div class="label">With Regulatory Action</div><div class="value">?</div><div class="prov"><span class="src src-gap">GAP</span> Watchout Investors API not available in source set</div></div>
+          <div class="kpi amber"><div class="label">With Strike-off Exposure</div><div class="value">1</div><div class="prov"><b>P42 · p.16</b> · Aniruddha Ray → 2 struck-off companies</div></div>
+          <div class="kpi"><div class="label">With Criminal Record</div><div class="value">?</div><div class="prov"><span class="src src-gap">GAP</span> Watchout Investors API</div></div>
+          <div class="kpi"><div class="label">With Defaulter Hit</div><div class="value">?</div><div class="prov"><span class="src src-gap">GAP</span> Watchout Investors API</div></div>
+          <div class="kpi"><div class="label">DIR-3 KYC Pending / Lapsed</div><div class="value">0</div><div class="prov"><b>P42 · p.14</b> · only 1 historic director (W.J. Parker) had DIN deactivated for KYC non-filing — already ceased 4 Nov 2013, outside lookback window</div></div>
+          <div class="kpi"><div class="label">Recently Resigned</div><div class="value">0</div><div class="prov"><b>P42 · p.14</b> · within 3-yr window <span class="src src-judg">JUDG</span> — engg-tuned window assumed 3 yrs per spec</div></div>
+        </div>
+
+        <div class="callout amber">
+          <div class="lbl">Amber</div>
+          <div class="body"><b>Director carries 2 struck-off entity associations.</b> Aniruddha Ray (MD) listed as director of <b>PRIME FACIE DESIGN PVT LTD</b> (U74999MH2016PTC284017, Status: Strike Off) and <b>INTERNATIONAL BUILDING AND INFRASTRUCTURE PVT LTD</b> (U45400MH2014PTC256936, Status: Strike Off). Surfaced from P42 "Other Directorships" cross-check (sample page 16). Investigate association period and reason for strike-off. <span class="src src-p42">P42 · p.16</span></div>
+        </div>
+
+        <!-- Block 2A -->
+        <h2 class="section">Block 2A — Director Risk Matrix <span class="pip">2 active directors</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Director list from M&amp;G module · enriched with Watchout Investors (assumed) + P42 Other Directorships</h3><div class="right"><span class="src src-xmod">X-MOD</span> <span class="src src-p42">P42 · p.14, p.16</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>Name</th><th>DIN</th><th>Designation</th><th>Appt. Date</th><th>DIN Status</th><th>DIR-3 KYC</th><th>Reg Actions</th><th>Criminal</th><th>Strike-off Assoc.</th><th>Defaulter Hits</th><th>Risk</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td><b>Aniruddha Ray</b></td>
+                  <td class="mono">05340569</td>
+                  <td>Managing Director</td>
+                  <td>15 Jan 2013 (MD), 3 Sep 2012 (orig)</td>
+                  <td><span class="badge b-ok">Active</span> <span class="src src-p42">P42</span></td>
+                  <td><span class="badge b-ok">OK</span> <span class="src src-judg" title="No deactivation noted in P42 Directors table. Assumed compliant unless MCA lookup contradicts.">JUDG</span></td>
+                  <td>? <span class="src src-gap">GAP</span></td>
+                  <td>? <span class="src src-gap">GAP</span></td>
+                  <td>2 <span class="src src-p42">P42 · p.16</span></td>
+                  <td>? <span class="src src-gap">GAP</span></td>
+                  <td><span class="badge b-amber">Amber</span> <span class="src src-judg" title="Amber driven by strike-off associations. Could escalate to Critical once Watchout data confirms regulator actions / criminal record.">JUDG</span></td>
+                </tr>
+                <tr>
+                  <td><b>Rachid Mikati</b></td>
+                  <td class="mono">03614250</td>
+                  <td>Director</td>
+                  <td>3 Sep 2012</td>
+                  <td><span class="badge b-ok">Active</span> <span class="src src-p42">P42</span></td>
+                  <td><span class="badge b-ok">OK</span> <span class="src src-judg">JUDG</span></td>
+                  <td>? <span class="src src-gap">GAP</span></td>
+                  <td>? <span class="src src-gap">GAP</span></td>
+                  <td>0 <span class="src src-p42">P42 · p.16</span></td>
+                  <td>? <span class="src src-gap">GAP</span></td>
+                  <td><span class="badge b-info">Unknown — pending Watchout</span> <span class="src src-judg">JUDG</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="ftn">Per spec, if Watchout Investors access is unavailable, this submodule degrades to MCA-only and depth moves to post-IM. <b>Current pre-IM coverage with the bundled data is partial</b> — auditor's written-rep on disqualification (PDF · doc-8) is the only independent check we have.</div>
+          </div>
+        </div>
+
+        <!-- Block 2B -->
+        <h2 class="section">Block 2B — Per-Director Detail Drawer <span class="pip">click row in 2A</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Aniruddha Ray (DIN 05340569) · sample drawer</h3><div class="right"></div></div>
+          <div class="bbody" style="padding:14px">
+            <div class="note"><b>Identity &amp; status</b> · MD · Appt. 15 Jan 2013 (MD), 3 Sep 2012 (Original) · Active DIN <span class="src src-p42">P42 · p.14</span></div>
+            <div class="note"><b>Director Association History</b> · Director 3 Sep 2012 → 15 Jan 2013 (designation change to MD), continuing <span class="src src-p42">P42 · p.15</span></div>
+            <div class="note"><b>Other Directorships:</b>
+              <ul style="margin:6px 0 0 18px">
+                <li>ASSURED CONSOLIDATED CONSTRUCTION PVT LTD <span class="mono">(U45200DL2013PTC251104)</span> · Active · Appt 25 Apr 2013 — note: also a Related Party of ACC per P42 RPT <span class="src src-p42">P42 · p.6, p.16</span></li>
+                <li><b>PRIME FACIE DESIGN PVT LTD</b> <span class="mono">(U74999MH2016PTC284017)</span> · <span class="badge b-amber">Strike Off</span> · Appt 22 Jul 2016 <span class="src src-p42">P42 · p.16</span></li>
+                <li><b>INTERNATIONAL BUILDING AND INFRASTRUCTURE PVT LTD</b> <span class="mono">(U45400MH2014PTC256936)</span> · <span class="badge b-amber">Strike Off</span> · Appt 6 Aug 2014 <span class="src src-p42">P42 · p.16</span></li>
+              </ul>
+            </div>
+            <div class="note"><b>Regulatory actions:</b> <span class="src src-gap">GAP</span> — Watchout Investors per-DIN feed required (sample fields: regulator | order ref | date | nature | current status). Not in bundled sources.</div>
+            <div class="note"><b>Criminal proceedings (personal capacity):</b> <span class="src src-gap">GAP</span> — Watchout Investors. <i>Side-note:</i> The Probable Case <span class="mono">Sum.Civ.Suit/492/2022</span> in Block 1F names Aniruddha Ray as a director party — surfaced for verification, not classified as personal capacity yet.</div>
+            <div class="note"><b>Defaulter database hits (CIBIL Suit-Filed / RBI Wilful Defaulter / fraud):</b> <span class="src src-gap">GAP</span> — Watchout Investors. P42 distress section (p.41) for the company is clean (no Suit Filed Cases, no name removal U/S 248(5), no BIFR, no CDR) — but that is entity-level, not per-DIN.</div>
+          </div>
+        </div>
+
+        <!-- Block 2C -->
+        <h2 class="section">Block 2C — Prior Strike-off Entity Associations (consolidated)</h2>
+        <div class="block">
+          <div class="bhead"><h3>Pulled from Watchout Investors + P42 Other Directorships cross-check</h3><div class="right"><span class="src src-p42">P42 · p.16</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>Director</th><th>Entity Name</th><th>Entity CIN</th><th>Strike-off Date</th><th>Section invoked</th><th>Association Period</th></tr></thead>
+              <tbody>
+                <tr><td>Aniruddha Ray</td><td>Prime Facie Design Pvt Ltd</td><td class="mono">U74999MH2016PTC284017</td><td>? <span class="src src-gap">GAP</span> — MCA lookup needed</td><td>? <span class="src src-gap">GAP</span> Likely Sec 248 (assumed) <span class="src src-judg">JUDG</span></td><td>22 Jul 2016 → strike-off date (unknown)</td></tr>
+                <tr><td>Aniruddha Ray</td><td>International Building &amp; Infrastructure Pvt Ltd</td><td class="mono">U45400MH2014PTC256936</td><td>? <span class="src src-gap">GAP</span></td><td>? <span class="src src-gap">GAP</span></td><td>6 Aug 2014 → strike-off date (unknown)</td></tr>
+              </tbody>
+            </table>
+            <div class="ftn">P42 surfaces the strike-off status but not the strike-off date or section. Engg follow-up: add MCA portal lookup or Watchout enrichment to populate the missing columns. For now, banker note is the action.</div>
+          </div>
+        </div>
+
+        <!-- Block 2D -->
+        <h2 class="section">Block 2D — Recently Resigned Directors</h2>
+        <div class="block">
+          <div class="bhead"><h3>Lookback window: 3 yrs (assumed per spec engg-default)</h3><div class="right"><span class="src src-p42">P42 · p.14</span> <span class="src src-judg">JUDG · window=3y</span></div></div>
+          <div class="bbody"><div class="empty">No directors ceased within the last 3 financial years. <br><br>Historic record (outside window): <b>WILLIAM JOSEPH PARKER</b> · DIN 03623627 · Director, ceased 4 Nov 2013, DIN later "Deactivated due to non-filing of DIR-3 KYC" — kept for trail but not flagged for current DD.</div></div>
+        </div>
+
+      </div>
+
+      <!-- Right rail -->
+      <div class="rail">
+        <div class="card">
+          <h4>Cross-module exports</h4>
+          <span class="chip">Board risk score → Final Synthesizer (degraded — Watchout pending)</span>
+        </div>
+        <div class="card">
+          <h4>Open module-level question</h4>
+          <ul>
+            <li>Per spec: <i>"If Watchout Investors access is unavailable, this submodule degrades to MCA-only; depth moves to post-IM."</i> The bundled data confirms <b>Watchout is not available</b>. <b>Banker decision needed:</b> proceed with degraded view (as shown) or provision access before sign-off?</li>
+            <li>Promoter personal legal history is <b>out of v1</b> — note that Arabian Construction Co SAL (50.99% promoter, foreign entity) and individual promoters carry their own legal baggage not surfaced here.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Gaps in this submodule</h4>
+          <ul>
+            <li><span class="src src-gap">GAP</span> <b>Watchout Investors API</b> — drives 4 of 7 KPI counters and 4 of 11 columns in Block 2A.</li>
+            <li><span class="src src-gap">GAP</span> <b>MCA DIN Master direct lookup</b> — DIN status and DIR-3 KYC are sourced indirectly from P42 Directors table; recommend MCA portal verification before sign-off.</li>
+            <li><span class="src src-gap">GAP</span> <b>ADT-3 for past auditor change</b> — not in AOC-4 bundle (also relevant to Submodule 4).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Engg follow-ups visible</h4>
+          <ul>
+            <li>Composite risk-indicator scoring (Logic 5–6).</li>
+            <li>Resigned-director lookback window — default value (assumed 3y here).</li>
+            <li>MCA-direct fallback when P42 lookup fails.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== SUBMODULE 3 =============== -->
+  <div class="panel" id="s3">
+    <div class="twocol">
+      <div>
+
+        <!-- KPI by domain -->
+        <div class="kpi-group">
+          <div class="grp-label">Statutory &amp; ROC</div>
+          <div class="kpi-band">
+            <div class="kpi"><div class="label">Active GSTINs</div><div class="value">7</div><div class="prov"><b>P42 · p.36</b></div></div>
+            <div class="kpi amber"><div class="label">Cancelled / Filing-Not-Found</div><div class="value">1</div><div class="prov"><b>P42 · p.36</b> · Punjab GSTIN <span class="mono">03AAKCA9219Q1Z6</span> — "FILING NOT FOUND"</div></div>
+            <div class="kpi ok"><div class="label">AGM Compliance</div><div class="value">Y</div><div class="prov"><b>PDF · doc-9 §5(b), p.2</b> · AGM 30 Sep 2025 = due date</div></div>
+            <div class="kpi"><div class="label">Active Compliant flag</div><div class="value">Y</div><div class="prov"><b>P42 · p.1</b> Master Data</div></div>
+          </div>
+        </div>
+
+        <div class="kpi-group">
+          <div class="grp-label">Tax</div>
+          <div class="kpi-band">
+            <div class="kpi ok"><div class="label">GST Discipline (last 24m)</div><div class="value">~97%</div><div class="prov"><b>P42 · p.63–72</b> (Filing-Details annexure) · 320 on-time / 330 returns observed · <span class="src src-judg">JUDG · sampling</span> — engg should compute exact %</div></div>
+            <div class="kpi"><div class="label">MSME 43B(h) Upper-bound</div><div class="value">₹0.70 Cr</div><div class="prov"><b>P42 · p.7</b> · Oct 2024–Mar 2025 MSME-1 period · spec says treat as upper bound</div></div>
+            <div class="kpi"><div class="label">MSME Suppliers Overdue</div><div class="value">12</div><div class="prov"><b>P42 · p.7</b></div></div>
+            <div class="kpi"><div class="label">GSTR-9 / 9C overdue</div><div class="value">0</div><div class="prov"><b>P42 · p.63, 65</b> · FY24–25 GSTR-9 filed 10 Feb 2026 &amp; GSTR-9C 16 Mar 2026 for Delhi/Mah; check other GSTINs in 3A</div></div>
+          </div>
+        </div>
+
+        <div class="kpi-group">
+          <div class="grp-label">Labour</div>
+          <div class="kpi-band">
+            <div class="kpi"><div class="label">Active EPFO Establishments</div><div class="value">3</div><div class="prov"><b>P42 · p.42</b> · Kolkata, New Delhi, Mumbai</div></div>
+            <div class="kpi amber"><div class="label">With Delay Flag</div><div class="value">3</div><div class="prov"><b>P42 · p.42</b> · <b>all 3</b> carry "Payment After Due Date in last 12 Months"</div></div>
+            <div class="kpi amber"><div class="label">Avg Delay last 12m</div><div class="value">~10–18 d</div><div class="prov"><b>P42 · p.74–80</b> EPFO annexure · <span class="src src-judg">JUDG · estimated from sample</span> · engg-precise compute pending</div></div>
+            <div class="kpi ok"><div class="label">Missed Wage Months</div><div class="value">0</div><div class="prov"><b>P42 · p.74–80</b> · every wage month Mar 2024 → Feb 2026 has at least one ECR credit</div></div>
+          </div>
+        </div>
+
+        <div class="kpi-group">
+          <div class="grp-label">Auditor cross-check</div>
+          <div class="kpi-band">
+            <div class="kpi amber"><div class="label">CARO (vii) flag — latest FY</div><div class="value">Y</div><div class="prov"><b>PDF · doc-8 Annexure A clause vii, p.3</b> · "some delays have been observed in depositing the undisputed statutory dues including PF, ESI, income-tax, GST"</div></div>
+          </div>
+        </div>
+
+        <!-- Callouts -->
+        <div class="callout amber">
+          <div class="lbl">Amber</div>
+          <div class="body"><b>EPFO payment delays at all 3 establishments — 12 of last 12 months show "Payment After Due Date" at the Kolkata establishment.</b> Dual-purpose signal: compliance + cash-flow stress proxy. Auto-generated management Q queued; cross-exported to Credit History. <span class="src src-p42">P42 · p.74</span></div>
+        </div>
+
+        <div class="callout amber">
+          <div class="lbl">Amber</div>
+          <div class="body"><b>1 GSTIN with "Filing Not Found"</b> at Punjab (<span class="mono">03AAKCA9219Q1Z6</span>) — Mohali-1 jurisdiction. Investigate operational status. <span class="src src-p42">P42 · p.36, p.71</span></div>
+        </div>
+
+        <div class="callout soft">
+          <div class="lbl">Soft</div>
+          <div class="body"><b>AOC-4 FY25 filed ~13 days late</b> — AGM 30 Sep 2025, statutory due 30 Oct 2025; AOC-4 SRN timestamp ~12 Nov 2025 (digital signing 12 Nov 2025). Under the spec's &gt;60-day threshold, but document the gap. <span class="src src-pdf">PDF · doc-9 §4(a), §5(b), Declaration sig date, p.1–5</span> <span class="src src-judg">JUDG · estimate from sign date</span></div>
+        </div>
+
+        <!-- Block 3A -->
+        <h2 class="section">Block 3A — GST GSTIN-wise Status <span class="pip">8 GSTINs</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: P42 GST → Active GSTINs + Filing Details Annexure</h3><div class="right"><span class="src src-p42">P42 · p.36, p.63–72</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>GSTIN</th><th>State</th><th>Status</th><th>Latest Filing</th><th>Latest Date</th><th>Filing Discipline (last 24m)</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">07AAKCA9219Q1ZY</td><td>Delhi</td><td><span class="badge b-ok">Active</span></td><td>GSTR1 Mar 2025-26</td><td>10 Apr 2026</td><td>~97% · 1 late (GSTR1 May'24 filed 12 Jun) <span class="src src-judg">JUDG</span></td></tr>
+                <tr><td class="mono">06AAKCA9219Q1Z0</td><td>Haryana</td><td><span class="badge b-ok">Active</span></td><td>GSTR1 Mar 2025-26</td><td>10 Apr 2026</td><td>~96% · 2 late <span class="src src-judg">JUDG</span></td></tr>
+                <tr><td class="mono">27AAKCA9219Q1ZW</td><td>Maharashtra</td><td><span class="badge b-ok">Active</span></td><td>GSTR3B Feb 2025-26 + GSTR9C FY25</td><td>20 Mar 2026</td><td>~97% <span class="src src-judg">JUDG</span></td></tr>
+                <tr><td class="mono">21AAKCA9219Q1Z8</td><td>Odisha</td><td><span class="badge b-ok">Active</span></td><td>GSTR1 Mar 2025-26</td><td>10 Apr 2026</td><td>~98% <span class="src src-judg">JUDG</span></td></tr>
+                <tr><td class="mono">36AAKCA9219Q1ZX</td><td>Telangana</td><td><span class="badge b-ok">Active</span></td><td>GSTR1 Mar 2025-26</td><td>10 Apr 2026</td><td>~98% <span class="src src-judg">JUDG</span></td></tr>
+                <tr><td class="mono">09AAKCA9219Q1ZU</td><td>Uttar Pradesh</td><td><span class="badge b-ok">Active</span></td><td>GSTR1 Mar 2025-26</td><td>11 Apr 2026</td><td>~97% <span class="src src-judg">JUDG</span></td></tr>
+                <tr><td class="mono">19AAKCA9219Q1ZT</td><td>West Bengal</td><td><span class="badge b-ok">Active</span></td><td>GSTR1 Mar 2025-26</td><td>10 Apr 2026</td><td>~97% <span class="src src-judg">JUDG</span></td></tr>
+                <tr><td class="mono">03AAKCA9219Q1Z6</td><td>Punjab</td><td><span class="badge b-amber">FILING NOT FOUND</span></td><td colspan="2">—</td><td>n/a — flag</td></tr>
+              </tbody>
+            </table>
+            <div class="ftn"><b>Sanity total:</b> 320 "Filed on Time" + 10 "Filed After Due Date" across all GSTINs (sources p.63–72). Punjab GSTIN has no filings on record. <span class="src src-p42">P42</span></div>
+          </div>
+        </div>
+
+        <!-- Block 3B -->
+        <h2 class="section">Block 3B — GST Filing Discipline Heatmap <span class="pip">illustrative · 12m</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Cells: green = on time · amber = 1–10 days late · red = &gt;10 days late · grey = no return required</h3><div class="right"><span class="src src-p42">P42</span> <span class="src src-judg">JUDG · viz mock</span></div></div>
+          <div class="bbody" style="padding:14px">
+            <div class="heatmap">
+              <div class="row"><div class="lbl">07…1ZY Delhi</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div></div>
+              <div class="row"><div class="lbl">06…1Z0 Haryana</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div></div>
+              <div class="row"><div class="lbl">27…1ZW Maharashtra</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div></div>
+              <div class="row"><div class="lbl">21…1Z8 Odisha</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div></div>
+              <div class="row"><div class="lbl">36…1ZX Telangana</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div></div>
+              <div class="row"><div class="lbl">09…1ZU UP</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div></div>
+              <div class="row"><div class="lbl">19…1ZT WB</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div></div>
+              <div class="row"><div class="lbl">03…1Z6 Punjab</div><div class="cell bk">—</div><div class="cell bk">—</div><div class="cell bk">—</div><div class="cell bk">—</div><div class="cell bk">—</div><div class="cell bk">—</div><div class="cell bk">—</div><div class="cell bk">—</div><div class="cell bk">—</div><div class="cell bk">—</div><div class="cell bk">—</div><div class="cell bk">—</div></div>
+            </div>
+            <div class="heatmap-key"><span class="g">on time</span><span class="a">1–10d late</span><span class="r">&gt;10d late</span><span class="bk">missing</span><span class="gy">N/A</span></div>
+            <div class="ftn"><b>Discipline read:</b> all 7 active GSTINs show clean monthly cadence in the last 12 months in our sample window. The 10 historical "Filed After Due Date" entries are all from May–Jun 2024 (older than the 12m window shown).</div>
+          </div>
+        </div>
+
+        <!-- Block 3C -->
+        <h2 class="section">Block 3C — MSME Suppliers Overdue <span class="pip">12 suppliers · ₹0.70 Cr total</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: P42 MSME Supplier Payment Delays (Oct 2024 – Mar 2025)</h3><div class="right"><span class="src src-p42">P42 · p.7</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>Supplier</th><th>PAN</th><th>Amount Due (₹ Cr)</th><th>Period</th></tr></thead>
+              <tbody>
+                <tr><td>Aboobaker Ebrahim Soorya</td><td class="mono">AAPPS9098D</td><td>0.16</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>Nirman Concrete Pvt Ltd</td><td class="mono">AAGCN6652E</td><td>0.33</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>Shreyas Trading Company</td><td class="mono">AACFS1534M</td><td>0.08</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>Viswanath Industries</td><td class="mono">ABCPB4918K</td><td>0.04</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>Innomac Engineering Industries P Ltd</td><td class="mono">AAFCI1797N</td><td>0.03</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>Inter Dominion (Sales) Agencies</td><td class="mono">AAAFI7033D</td><td>0.02</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>Techno Splicing</td><td class="mono">AAIFT8990J</td><td>0.02</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>Adrija Infracon</td><td class="mono">BEZPM2966P</td><td>0.01</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>Archana Enterprises</td><td class="mono">ALRPD2272K</td><td>0.01</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>Computo Copier Centre P Ltd</td><td class="mono">AAFCC5922P</td><td>0.01</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>National Traders</td><td class="mono">AACFN6576G</td><td>0.01</td><td>Oct '24 – Mar '25</td></tr>
+                <tr><td>Tapeshwar Enterprises</td><td class="mono">AVKPT6017H</td><td>0.00</td><td>Oct '24 – Mar '25</td></tr>
+                <tr style="background:#fbfaf5;font-weight:700"><td>Total — 43B(h) upper-bound</td><td></td><td>0.70</td><td>H2 FY25 only</td></tr>
+              </tbody>
+            </table>
+            <div class="ftn"><b>Caveat per spec:</b> MSME-1 reports outstanding balance but not per-invoice aging. The 43B(h) disallowance applies only to dues beyond 45 days; this total is the <b>maximum possible disallowance</b>, not precise. Banker question queued: per-invoice aging from creditor master.<br><b>Engg follow-up (per spec):</b> P42 surfaces only one half-year period in the report. The user-author of the spec notes "We get MSME Supplier Payment Delays for multiple time periods — just not in the report. We might be able to pull it from the Probe42 API." → trend chart deferred.</div>
+          </div>
+        </div>
+
+        <!-- Block 3D -->
+        <h2 class="section">Block 3D — ROC Filing Hygiene</h2>
+        <div class="block">
+          <div class="bhead"><h3>AOC-4 / AGM / Active Compliant</h3><div class="right"><span class="src src-pdf">PDF · doc-9</span> <span class="src src-p42">P42 · p.1</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>Form / Event</th><th>FY</th><th>Due Date</th><th>Actual Date</th><th>Delay (days)</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>AGM (Sec 96)</td><td>FY25</td><td>30 Sep 2025</td><td>30 Sep 2025</td><td>0</td><td><span class="badge b-ok">On time</span> <span class="src src-pdf">doc-9 §5(b), p.2</span></td></tr>
+                <tr><td>Board approval of FS</td><td>FY25</td><td>—</td><td>5 Sep 2025</td><td>—</td><td><span class="src src-pdf">doc-9 §4(a), p.1</span></td></tr>
+                <tr><td>AOC-4 XBRL</td><td>FY25</td><td>30 Oct 2025 (30d post-AGM)</td><td>~12 Nov 2025 <span class="src src-judg">JUDG · digital-signing date on the form</span></td><td>~13</td><td><span class="badge b-soft">Soft · &lt;60d threshold</span></td></tr>
+                <tr><td>MGT-7</td><td>FY25</td><td>29 Nov 2025 (60d post-AGM)</td><td>? <span class="src src-gap">GAP</span></td><td>?</td><td><span class="src src-gap">GAP</span> — MGT-7 not in bundle</td></tr>
+                <tr><td>Active Compliant flag</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge b-ok">Yes</span> <span class="src src-p42">P42 · p.1</span></td></tr>
+                <tr><td>AGM gap (Sec 96 ≤15 mo)</td><td>FY24→FY25</td><td>—</td><td>?</td><td>?</td><td><span class="src src-gap">GAP</span> · last-but-one AGM date not in bundle</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Block 3E -->
+        <h2 class="section">Block 3E — EPFO Establishments <span class="pip">3 establishments</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: P42 Establishments Registered with EPFO + Annexure</h3><div class="right"><span class="src src-p42">P42 · p.42, p.74–80</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>Establishment ID</th><th>Name</th><th>City</th><th>Latest Wage Mo</th><th>Latest Credit</th><th>Delay (latest, days)</th><th>Avg Delay (12m)</th><th>Employees</th><th>Monthly Amt (₹ Cr)</th><th>Delay Flag</th><th>Trend</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">WBPRB1459747000</td><td>ACC INDIA PVT LTD</td><td>Kolkata</td><td>Feb 2026</td><td>18 Apr 2026</td><td>34 <span class="src src-judg">JUDG</span></td><td>~15 <span class="src src-judg">JUDG</span></td><td>502</td><td>0.06</td><td><span class="badge b-amber">Yes</span></td><td>▬ stable (high) <span class="src src-judg">JUDG</span></td></tr>
+                <tr><td class="mono">DSNHP0943204000</td><td>M/S ACC INDIA PVT. LTD.</td><td>New Delhi</td><td>Feb 2026</td><td>2 Apr 2026</td><td>18 <span class="src src-judg">JUDG</span></td><td>~10 <span class="src src-judg">JUDG</span></td><td>1,033</td><td>0.24</td><td><span class="badge b-amber">Yes</span></td><td>▬ stable (moderate) <span class="src src-judg">JUDG</span></td></tr>
+                <tr><td class="mono">THVSH1400379000</td><td>ACC INDIA PRIVATE LIMITED</td><td>Mumbai</td><td>Feb 2026</td><td>2 Apr 2026</td><td>18 <span class="src src-judg">JUDG</span></td><td>~7 <span class="src src-judg">JUDG</span></td><td>37</td><td>0.01</td><td><span class="badge b-amber">Yes</span></td><td>▼ improving (some on-time months) <span class="src src-judg">JUDG</span></td></tr>
+              </tbody>
+            </table>
+            <div class="ftn"><b>Note (judgment):</b> Latest credit date for all 3 establishments lags due date (15th of next month). Kolkata is the worst — every wage month Mar 2024 – Feb 2026 shows "Payment After Due Date". <b>Engg follow-up:</b> per-establishment avg-delay must be computed precisely from the per-month TRRN table on p.74–80 — values above are eyeballed approximations.</div>
+          </div>
+        </div>
+
+        <!-- Block 3F -->
+        <h2 class="section">Block 3F — EPFO Payment Delay Heatmap <span class="pip">12m</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>From per-month ECR data in P42 EPFO annexure</h3><div class="right"><span class="src src-p42">P42 · p.74–80</span></div></div>
+          <div class="bbody" style="padding:14px">
+            <div class="heatmap">
+              <div class="row"><div class="lbl">Kolkata (WBPRB…7000)</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell r">R</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell r">R</div><div class="cell r">R</div></div>
+              <div class="row"><div class="lbl">New Delhi (DSNHP…4000)</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell a">A</div></div>
+              <div class="row"><div class="lbl">Mumbai (THVSH…9000)</div><div class="cell a">A</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell g">G</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell g">G</div><div class="cell a">A</div><div class="cell a">A</div><div class="cell g">G</div><div class="cell a">A</div><div class="cell a">A</div></div>
+            </div>
+            <div class="heatmap-key"><span class="g">on time / ≤3d</span><span class="a">4–15d late</span><span class="r">&gt;15d late</span><span class="bk">missed</span><span class="gy">N/A</span></div>
+            <div class="ftn"><b>Read (judgment):</b> Kolkata is consistently late; Delhi marginally late; Mumbai mixed. No missed wage months observed. <b>Cash-flow stress proxy</b> — flagged for Credit module export. <span class="src src-judg">JUDG · viz mock from per-wage-month table</span></div>
+          </div>
+        </div>
+
+        <!-- Block 3G -->
+        <h2 class="section">Block 3G — CARO Clause (vii) Verbatim Findings (FY25)</h2>
+        <div class="block">
+          <div class="bhead"><h3>Cross-module input from Submodule 4</h3><div class="right"><span class="src src-pdf">PDF · doc-8 Annexure A, clause vii, p.3–4</span></div></div>
+          <div class="bbody">
+            <div class="note" style="padding:10px 14px"><b>Clause vii(a) — undisputed statutory dues (verbatim):</b> <i>"in our opinion, <u>some delays have been observed in depositing the undisputed statutory dues including provident fund, employees' state insurance, income-tax, goods and services tax</u> and other material statutory dues applicable to it with the appropriate authorities… there are no undisputed amount payable… outstanding as at 31st March, 2025 for a period of more than six months from the date of becoming payable."</i></div>
+            <table>
+              <thead><tr><th>Statute</th><th>Nature</th><th>FY</th><th>Tax Demand (₹ Lakhs)</th><th>Forum</th><th>Stage</th></tr></thead>
+              <tbody>
+                <tr><td>Income Tax Act, 1961</td><td>Disallowance of Expenses</td><td>FY15-16</td><td>45.76</td><td>ITAT (filed by IT Dept)</td><td>Disputed · pending</td></tr>
+                <tr><td>Income Tax Act, 1961</td><td>Disallowance of Expenses</td><td>FY17-18</td><td>333.86</td><td>CIT Appeal</td><td>Disputed · pending</td></tr>
+                <tr><td>Income Tax Act, 1961</td><td>Disallowance of Expenses</td><td>FY21-22</td><td>11.79</td><td>CIT Appeal</td><td>Disputed · pending</td></tr>
+                <tr><td>TDS/TCS</td><td>Outstanding Demand (Traces)</td><td>FY21-22</td><td>5.94</td><td>Traces portal</td><td>Disputed · pending</td></tr>
+                <tr><td>TDS/TCS</td><td>Outstanding Demand (Traces)</td><td>FY23-24</td><td>5.88</td><td>Traces portal</td><td>Disputed · pending</td></tr>
+                <tr><td>WB VAT Act, 2003</td><td>Disallowance ITC + WCT/TDS</td><td>FY15-16</td><td>370.63</td><td>App. Auth. Revision Board ST WB</td><td>Disputed · pending</td></tr>
+                <tr><td>WBGST Act, 2017</td><td>ITC Mismatch (3B vs 2A)</td><td>FY20-21</td><td>25.63</td><td>App. Auth., Ballygunge</td><td>Disputed · pending</td></tr>
+                <tr><td>MGST Act, 2017</td><td>Excess Availment of ITC</td><td>FY17-18</td><td>13.97</td><td>App. Auth., Vashi</td><td>Disputed · pending</td></tr>
+                <tr><td>HRGST Act, 2017</td><td>ITC Mismatch + E-way bill</td><td>FY20-21</td><td>26.82</td><td>App. Auth., Gurugram</td><td>Disputed · pending</td></tr>
+                <tr><td>UPGST Act, 2017</td><td>ITC Mismatch (3B vs 2A)</td><td>FY20-21</td><td>153.66</td><td>Dy Comm., Noida Sector-14</td><td>Disputed · pending</td></tr>
+                <tr style="background:#fbfaf5;font-weight:700"><td colspan="3">Total disputed</td><td>993.94 (≈ ₹9.94 Cr)</td><td colspan="2"></td></tr>
+              </tbody>
+            </table>
+            <div class="ftn">CARO vii(b) lists all dues disputed and pending. <b>Cross-links into Litigation Register (Block 1A):</b> ITA 650/DEL/2020 (pending against the company) and WPA/27195/2024 (filed by the company against WB State Tax) plausibly correspond to entries here — banker should match line-by-line.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right rail -->
+      <div class="rail">
+        <div class="card">
+          <h4>Cross-module exports</h4>
+          <span class="chip">MSME 43B(h) ₹0.70 Cr → Financial Performance</span>
+          <span class="chip amber">EPFO delay pattern → Credit History (cash-flow stress)</span>
+          <span class="chip">CARO(vii) verbatim ← Submodule 4 (inbound)</span>
+        </div>
+        <div class="card">
+          <h4>Management questions queued</h4>
+          <ul>
+            <li>Punjab GSTIN <span class="mono">03AAKCA9219Q1Z6</span> — operational status &amp; "Filing Not Found" cause.</li>
+            <li>EPFO delay root cause — working-capital tightness vs admin lapse?</li>
+            <li>MSME aging — per-invoice 45-day split vs blanket outstanding.</li>
+            <li>AOC-4 FY25 ~13d late — banker note &amp; ROC penalty status.</li>
+            <li>Disputed tax dues (₹9.94 Cr total) — provision in FS, expected timeline, settlement strategy.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Engg follow-ups visible</h4>
+          <ul>
+            <li>MSME 43B(h) Amber threshold — value TBD.</li>
+            <li>EPFO avg-delay Amber threshold — value TBD.</li>
+            <li>Exact 24m GST discipline % per GSTIN — production compute.</li>
+            <li>MGT-7 / past AGM dates ingestion — to widen ROC hygiene check.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Gaps in this submodule</h4>
+          <ul>
+            <li><span class="src src-gap">GAP</span> <b>MGT-7 FY25</b> filing date — not in bundle.</li>
+            <li><span class="src src-gap">GAP</span> <b>Historic AGM dates (FY23, FY24)</b> for Sec 96 ≤15-mo gap check — not in bundle.</li>
+            <li><span class="src src-gap">GAP</span> <b>MSME multi-period</b> — only Oct'24–Mar'25 period surfaced in this Probe42 report.</li>
+            <li><span class="src src-gap">GAP</span> <b>Beyond-EPFO labour items</b> — ESI compliance, gratuity provisioning, Contract Labour registration, POSH disclosure, Shops &amp; Estab., Factories Act licences — not covered in v1 per spec.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== SUBMODULE 4 =============== -->
+  <div class="panel" id="s4">
+    <div class="twocol">
+      <div>
+
+        <!-- KPI -->
+        <div class="kpi-band">
+          <div class="kpi ok"><div class="label">FY25 Opinion</div><div class="value">Unqualified</div><div class="prov"><b>PDF · doc-8 Opinion §, p.1</b> · "give a true and fair view"</div></div>
+          <div class="kpi"><div class="label"># KAMs (FY25)</div><div class="value">0</div><div class="prov"><b>PDF · doc-8</b> · No KAM section. <span class="src src-judg">JUDG</span> · SA 701 not mandatory for unlisted company; voluntary disclosure not opted</div></div>
+          <div class="kpi amber"><div class="label"># EOMs (FY25)</div><div class="value">3</div><div class="prov"><b>PDF · doc-8 Emphasis of Matter §, p.1</b></div></div>
+          <div class="kpi amber"><div class="label">CARO Adverse Clauses (FY25)</div><div class="value">4</div><div class="prov"><b>PDF · doc-8 Annexure A, p.2–7</b> · clauses i(b), ii(a), vii, xiv(a) <span class="src src-judg">JUDG · classification</span></div></div>
+          <div class="kpi amber"><div class="label">Critical CARO Flag</div><div class="value">Y</div><div class="prov"><b>PDF · doc-8</b> · clause (vii) is in the critical set {vii, ix, xi, xiii, xvii, xix}</div></div>
+          <div class="kpi"><div class="label">Auditor Change Events (5 FYs)</div><div class="value">0</div><div class="prov"><b>P42 · p.5</b> · V Sahai Tripathi &amp; Co continuous FY19→FY25; prior change FY18→FY19 outside 5-FY window <span class="src src-judg">JUDG · window=5y</span></div></div>
+          <div class="kpi ok"><div class="label">P42 vs PDF Opinion Match</div><div class="value">Y</div><div class="prov"><b>P42 · p.35</b> "Not Qualified" matches <b>PDF · doc-8 Opinion §</b></div></div>
+          <div class="kpi"><div class="label">Auditor identity (cross-mod)</div><div class="value">V Sahai Tripathi &amp; Co</div><div class="prov"><b>X-MOD</b> About Company · pre-mocked from <b>PDF · doc-8 signature, p.7</b> · FRN 000262N, Partner Vishwas Tripathi M.No. 086897, signed 5 Sep 2025</div></div>
+        </div>
+
+        <!-- Block 5A -->
+        <h2 class="section">Block 5A — Opinion Trajectory (last 5 FYs)</h2>
+        <div class="block">
+          <div class="bhead"><h3>Per-FY Opinion class · cross-checked with P42 Auditors' Comments where available</h3><div class="right"><span class="src src-pdf">PDF · doc-8 (FY25 only)</span> <span class="src src-p42">P42 · p.35 (FY23–25 Y/N flag)</span></div></div>
+          <div class="bbody" style="padding:14px">
+            <div class="timeline">
+              <div class="tl gap"><div class="fy">FY21</div><div class="op">No PDF in bundle</div></div>
+              <div class="tl gap"><div class="fy">FY22</div><div class="op">No PDF in bundle</div></div>
+              <div class="tl unq"><div class="fy">FY23</div><div class="op">Unqualified</div></div>
+              <div class="tl unq"><div class="fy">FY24</div><div class="op">Unqualified</div></div>
+              <div class="tl unq"><div class="fy">FY25</div><div class="op">Unqualified</div></div>
+            </div>
+            <div class="note"><b>FY23 / FY24:</b> classified Unqualified from P42 Auditors' Comments summary (page 35) which says "No" qualification for FY25, FY24, FY23. The Independent Auditor's Report PDF for FY23 / FY24 is not in this bundle, so the spec's full-PDF extraction (Logic 1–5) cannot run for those years — <b>relying on the P42 summary as a sanity-check fallback</b>. <span class="src src-p42">P42 · p.35</span></div>
+            <div class="note"><b>FY21 / FY22:</b> not in P42 summary either (P42 returned FY23–25 only). <span class="src src-gap">GAP</span> — opinion trajectory beyond FY23 cannot be filled with the bundled sources.</div>
+          </div>
+        </div>
+
+        <!-- Block 5B -->
+        <h2 class="section">Block 5B — Key Audit Matters (FY25)</h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: PDF · doc-8</h3><div class="right"><span class="src src-pdf">PDF · doc-8</span></div></div>
+          <div class="bbody"><div class="empty">No KAM section present in the FY25 Independent Auditor's Report. <b>SA 701 is mandatory for listed entities only</b> — ACC India Pvt Ltd is unlisted, so the auditor did not voluntarily report KAMs. Spec's KAM block intentionally empty for this entity. <span class="src src-judg">JUDG</span></div></div>
+        </div>
+
+        <!-- Block 5C -->
+        <h2 class="section">Block 5C — Emphasis of Matter (FY25) <span class="pip">3 paragraphs</span></h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: PDF · doc-8 Emphasis of Matter §, p.1</h3><div class="right"><span class="src src-pdf">PDF · doc-8</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>#</th><th>Topic</th><th>Paragraph (verbatim)</th></tr></thead>
+              <tbody>
+                <tr><td>EOM-1</td><td>Balance confirmations &amp; reconciliations</td><td>"The account balances of customers, vendors, sub-contractors, Inter Corporate Deposits borrowed and security deposits paid are subject to confirmation and reconciliation. (Refer Note 27 of Notes to Accounts)."</td></tr>
+                <tr><td>EOM-2</td><td>POCM revenue recognition</td><td>"We have relied on the total estimated costs and the estimated revenues of the contracts, as provided by the management, for the purpose of revenue recognition as per Percentage of Completion Method (POCM). (Refer Note 36 of Notes to Accounts)."</td></tr>
+                <tr><td>EOM-3</td><td>Physical verification procedures</td><td>"The procedures designed by the management for physical verification and its reconciliation with books of accounts, of property, plant and equipment and inventories need to be further improved considering the size of the company and the nature of its business."</td></tr>
+              </tbody>
+            </table>
+            <div class="ftn">Auditor explicitly states "Our opinion is not qualified in respect of above matters." EOM-3 echoes CARO clauses i(b) and ii(a) (procedures need improvement). Banker question: <b>what specifically has management committed to fix on PPE / inventory verification, and what is the timeline?</b></div>
+          </div>
+        </div>
+
+        <!-- Block 5D: CARO 21-clause matrix -->
+        <h2 class="section">Block 5D — CARO 2020 21-Clause Matrix</h2>
+        <div class="block">
+          <div class="bhead"><h3>Source: PDF · doc-8 Annexure A, p.2–7 (FY25). Other FYs: GAP — PDF not in bundle.</h3><div class="right"><span class="src src-pdf">PDF · doc-8</span> <span class="src src-judg">JUDG · clause classification</span></div></div>
+          <div class="bbody" style="padding:6px 14px 14px">
+            <div class="caro-grid">
+              <div class="h">Clause</div><div class="h">Subject</div><div class="h">FY21</div><div class="h">FY22</div><div class="h">FY23</div><div class="h">FY24</div><div class="h">FY25</div>
+
+              <div class="cl">i</div><div class="desc">PP&amp;E and Intangibles</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell adv-soft" title="i(b) procedures need improvement; i(a)(B) N/A (no intangibles); i(c)–(e) compliant">Mixed</div>
+
+              <div class="cl">ii</div><div class="desc">Inventories</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell adv-soft" title="ii(a) procedures need improvement; ii(b) compliant">Mixed</div>
+
+              <div class="cl">iii</div><div class="desc">Loans/Investments/Guarantees</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell na">N/A</div>
+
+              <div class="cl">iv</div><div class="desc">Sec 185 / 186</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell cmp">OK</div>
+
+              <div class="cl">v</div><div class="desc">Deposits &amp; long-outstanding advances</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell adv-soft" title="Material/mobilization advances outstanding &gt;365d disclosed; clause 3(v) not applicable but soft note recorded">Note</div>
+
+              <div class="cl">vi</div><div class="desc">Cost records (Sec 148)</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell cmp">OK</div>
+
+              <div class="cl critical">vii</div><div class="desc"><b>Statutory dues</b> (critical)</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell adv" title="(a) delays observed; (b) disputed dues tabled — see Block 3G">Adverse</div>
+
+              <div class="cl">viii</div><div class="desc">Unrecorded income</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell cmp">OK</div>
+
+              <div class="cl critical">ix</div><div class="desc"><b>Loans/borrowings, wilful defaulter</b> (critical)</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell cmp" title="(a)–(d) compliant; (b) explicitly: not declared wilful defaulter; (e)(f) N/A no subs">OK</div>
+
+              <div class="cl">x</div><div class="desc">IPO/FPO / Private placement</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell na">N/A</div>
+
+              <div class="cl critical">xi</div><div class="desc"><b>Fraud / whistleblower</b> (critical)</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell cmp" title="(a) no fraud by/on company; (b) no ADT-4 filed; (c) no whistleblower complaints">OK</div>
+
+              <div class="cl">xii</div><div class="desc">Nidhi</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell na">N/A</div>
+
+              <div class="cl critical">xiii</div><div class="desc"><b>RPT (Sec 188 / 177)</b> (critical)</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell cmp" title="All RPTs in compliance; details disclosed in FS">OK</div>
+
+              <div class="cl">xiv</div><div class="desc">Internal Audit System</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell adv-soft" title="(a) internal audit needs improvement; (b) reports considered">Note</div>
+
+              <div class="cl">xv</div><div class="desc">Non-cash with directors (Sec 192)</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell cmp">OK</div>
+
+              <div class="cl">xvi</div><div class="desc">RBI Registration / CIC</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell na">N/A</div>
+
+              <div class="cl critical">xvii</div><div class="desc"><b>Cash losses</b> (critical)</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell cmp">OK</div>
+
+              <div class="cl">xviii</div><div class="desc">Auditor resignation during year</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell cmp">OK</div>
+
+              <div class="cl critical">xix</div><div class="desc"><b>Going concern</b> (critical)</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell cmp" title="No material uncertainty on ability to meet liabilities within 1 yr">OK</div>
+
+              <div class="cl">xx</div><div class="desc">CSR unspent</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell na">N/A · fully spent</div>
+
+              <div class="cl">xxi</div><div class="desc">Consolidated CARO observations</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell gap">GAP</div><div class="cell na">N/A · standalone FS, no subs</div>
+            </div>
+            <div class="ftn"><b>Critical-clause subset (bold rows, per spec):</b> vii, ix, xi, xiii, xvii, xix. Only <b>(vii)</b> is adverse in FY25 — that's the headline finding of this submodule and the cross-export to Submodule 3. Clauses i(b), ii(a), v, xiv(a) are "Mixed/Note" — sub-procedural weaknesses that don't trigger a critical flag but are surfaced.</div>
+          </div>
+        </div>
+
+        <!-- Block 5E -->
+        <h2 class="section">Block 5E — Auditor Change History</h2>
+        <div class="block">
+          <div class="bhead"><h3>From About Company input · enriched with reason text</h3><div class="right"><span class="src src-xmod">X-MOD</span> <span class="src src-p42">P42 · p.5</span></div></div>
+          <div class="bbody">
+            <table>
+              <thead><tr><th>FY</th><th>Auditor Name</th><th>FRN</th><th>Status</th><th>Reason for change</th></tr></thead>
+              <tbody>
+                <tr><td>FY25</td><td>V Sahai Tripathi &amp; Co · Partner: Vishwas Tripathi (M.No. 086897)</td><td class="mono">000262N</td><td><span class="badge b-ok">Continuing</span></td><td>—</td></tr>
+                <tr><td>FY24</td><td>V Sahai Tripathi &amp; Co</td><td class="mono">000262N</td><td><span class="badge b-ok">Continuing</span></td><td>—</td></tr>
+                <tr><td>FY23</td><td>V Sahai Tripathi &amp; Co</td><td class="mono">000262N</td><td><span class="badge b-ok">Continuing</span></td><td>—</td></tr>
+                <tr><td>FY22</td><td>V Sahai Tripathi &amp; Co</td><td class="mono">000262N</td><td><span class="badge b-ok">Continuing</span></td><td>—</td></tr>
+                <tr><td>FY21</td><td>V Sahai Tripathi &amp; Co</td><td class="mono">000262N</td><td><span class="badge b-ok">Continuing</span></td><td>—</td></tr>
+                <tr><td>FY19 → FY20</td><td>V Sahai Tripathi &amp; Co</td><td class="mono">000262N</td><td><span class="badge b-info">Appointed (replaced predecessor)</span></td><td><b>Reason not disclosed in available documents.</b> ADT-3 not present in AOC-4 bundle for FY19. <span class="src src-gap">GAP</span> — engg follow-up: MCA portal ADT-3 scrape.</td></tr>
+                <tr><td>FY15 – FY18</td><td>Amit B K Agrawal &amp; Co (predecessor)</td><td class="mono">022872N</td><td><span class="badge b-info">Resigned / replaced</span></td><td>Not disclosed <span class="src src-gap">GAP</span></td></tr>
+              </tbody>
+            </table>
+            <div class="ftn"><b>Within 5-FY lookback (FY21–FY25):</b> 0 change events. The FY18→FY19 change is outside the window. <b>Banker note:</b> auditor has now been in place 7 FYs — for Sec 139 rotation, applies to PUC ≥ ₹50 Cr or borrowings ≥ ₹50 Cr; ACC PUC ₹1.41 Cr so individual partner rotation likely not statutorily mandated yet. <span class="src src-judg">JUDG · governance flag for banker</span></div>
+          </div>
+        </div>
+
+        <hr class="soft">
+        <h2 class="section">Other notable items found in the FY25 PDF (incidental to submodule)</h2>
+        <div class="block">
+          <div class="bhead"><h3>Auditor's Sec 143(3) disclosures &amp; Annexure B on IFC</h3><div class="right"><span class="src src-pdf">PDF · doc-8 §143(3), p.4–5</span></div></div>
+          <div class="bbody" style="padding:14px">
+            <div class="note"><b>Sec 143(3)(e):</b> "<u>none of the directors are disqualified</u> as at 31st March 2025… in terms of section 164(2)" — independent confirmation that flows directly into Submodule 2's KPI band.</div>
+            <div class="note"><b>Sec 143(3)(b)–(d):</b> Books of account, BS, P&amp;L, CFS are in agreement with books — qualified by "<u>Except for the possible impacts of matters described in Emphasis of Matter paragraph</u>" — note this caveat alongside EOMs 1–3.</div>
+            <div class="note"><b>Annexure B — IFC opinion:</b> not extracted in this mock; would be surfaced in a full build (similar opinion-classification logic for IFC over financial reporting).</div>
+            <div class="note"><b>Note 32 — Pending Litigation (cross-link):</b> auditor states "The Company has disclosed the impact of pending litigations on its financial position in the notes to financial statements. (refer note 32)". This is the FY25 Standalone FS (doc-6) — <b>cross-link to Submodule 1 Block 1A</b>. <span class="src src-pdf">PDF · doc-8 §143(3)(h)(i), p.5</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right rail -->
+      <div class="rail">
+        <div class="card">
+          <h4>Cross-module exports</h4>
+          <span class="chip">CARO(vii) → Submodule 3 (Statutory) ✓</span>
+          <span class="chip">CARO(ix) → Credit History (clean — not wilful defaulter)</span>
+          <span class="chip">CARO(xi) → Final Synthesizer (clean — no fraud)</span>
+          <span class="chip">Director-disqualification confirmation → Submodule 2</span>
+        </div>
+        <div class="card">
+          <h4>Management questions queued</h4>
+          <ul>
+            <li>EOM-1 — confirmations &amp; reconciliations for customer/vendor/ICD/security deposit balances — when will the reconciliation be closed?</li>
+            <li>EOM-2 / EOM-3 — POCM estimate quality; physical-verification SOP for PPE and inventories — what's the remediation plan?</li>
+            <li>CARO vii(a) — quantify the delays in PF/ESI/IT/GST; root cause; remediation timeline.</li>
+            <li>CARO xiv(a) — Internal audit needs improvement — scope, frequency, reviewer.</li>
+            <li>Disputed dues (₹9.94 Cr) — provisioned amounts vs contingent liability split (Note 32 FS reference).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Engg follow-ups visible</h4>
+          <ul>
+            <li>Structured CARO extractor with 21-clause schema validation.</li>
+            <li>Multi-FY lookback — only FY25 PDF available; backfill FY21–24 for full matrix.</li>
+            <li>Confidence scoring per extracted clause (latest classification is JUDG, not algorithmic).</li>
+            <li>P42-vs-PDF discrepancy resolution policy — opinion matches here; need rule for mismatch case.</li>
+            <li>ADT-3 scraping feasibility for past auditor-change reason.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>Gaps in this submodule</h4>
+          <ul>
+            <li><span class="src src-gap">GAP</span> <b>FY21–FY24 Independent Auditor's Report PDFs</b> — only FY25 doc-8 in bundle. CARO matrix shows GAP columns; opinion trajectory beyond FY23 unverifiable.</li>
+            <li><span class="src src-gap">GAP</span> <b>ADT-3 for FY18→FY19 change</b> — reason for change unknown.</li>
+            <li><span class="src src-gap">GAP</span> <b>Annexure B (IFC opinion)</b> — not extracted in this mock; would mirror this submodule's flow.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============== SUMMARY OF AUDITABILITY =============== -->
+  <h2 class="section" style="margin-top:34px">Auditability summary — what's filled, what's missing, what's a judgment call</h2>
+  <div class="block">
+    <div class="bhead"><h3>Per-submodule rollup of source provenance — read this to know if any analysis the spec proposes <i>cannot</i> be performed</h3><div class="right">module-level</div></div>
+    <div class="bbody">
+      <table>
+        <thead><tr><th>Submodule</th><th>Filled from P42</th><th>Filled from PDFs (AOC-4 bundle)</th><th>Cross-module placeholders</th><th>Judgment calls (engg-tunable)</th><th>Hard GAPs vs spec</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><b>1 · Litigation</b></td>
+            <td>All 6 register blocks (1A–1F) fully populated; 26 cases total</td>
+            <td>Cross-ref to FS Note 32 only</td>
+            <td>None</td>
+            <td>Severity tags (1A) · Initiator-Type tagging · Filing-year regex · Cluster threshold (3 clusters surfaced) · "Dormant" 365d threshold</td>
+            <td>IM-disclosed litigation schedule (post-IM) · court order PDFs for disposed (v1.1) · ₹ amounts per case</td>
+          </tr>
+          <tr>
+            <td><b>2 · Director Risk</b></td>
+            <td>Director list, DIN status, Other Directorships, strike-off associations</td>
+            <td>Auditor written-rep on Sec 164 disqualification</td>
+            <td>Director list (real prod path) · Auditor identity (real prod path)</td>
+            <td>Resigned-director lookback window (3y) · Risk composite</td>
+            <td><b>Watchout Investors API</b> — drives 4 of 7 KPIs; module degrades to partial without it · MCA-direct DIN lookup · ADT-3</td>
+          </tr>
+          <tr>
+            <td><b>3 · Statutory/Tax/Labour</b></td>
+            <td>GST status (7 GSTINs + 1 FNF), MSME suppliers, EPFO 3 establishments + per-month payment data, Active Compliant, Last AGM</td>
+            <td>AOC-4 SRN + sign date (AGM, due date, board approval) · CARO(vii) verbatim</td>
+            <td>CARO(vii) inbound from Submodule 4</td>
+            <td>GST discipline % precise compute · EPFO avg-delay precise compute · MSME aging split (45d) · trend on EPFO/MSME · AOC-4 actual-filing-date</td>
+            <td>MGT-7 · prior AGM dates for Sec 96 gap · MSME multi-period · all non-EPFO labour (ESI/gratuity/Contract Labour/POSH/S&amp;E/Factories)</td>
+          </tr>
+          <tr>
+            <td><b>4 · Auditor / CARO</b></td>
+            <td>Auditors' Comments Y/N summary (FY23–25) · auditor identity continuity FY15–25</td>
+            <td>Full FY25 opinion + 3 EOMs + 21-clause CARO matrix + signature + FS Note 32 ref</td>
+            <td>Auditor identity (About Company prod path)</td>
+            <td>Clause classification (Compliant/Adverse/N/A/Note) · KAM = 0 (SA 701 inference) · Lookback window 5y · Rotation flag (Sec 139)</td>
+            <td>FY21–FY24 auditor report PDFs (matrix has 4 GAP columns) · ADT-3 for FY18→19 change · Annexure B (IFC opinion)</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="ftn">
+        <b>Bottom line on spec viability:</b><br>
+        · Submodules 1, 3, 4 can be largely built with just (Probe42 + AOC-4 attachments) — the documents in this ACC folder.<br>
+        · <b>Submodule 2 is the riskiest:</b> without Watchout Investors access, it falls back to ~30% of the intended depth (only MCA-DIN-master + P42 cross-checks). The spec already acknowledges this degraded mode; this mock confirms it materially in practice.<br>
+        · Submodule 4's 21-clause matrix requires <b>one auditor's-report PDF per FY in the lookback window</b>. The ACC folder has only FY25. To populate the matrix to its designed full depth, AOC-4 attachments for FY21–FY24 must be ingested per FY.<br>
+        · Several specs (filing-year regex, severity rules, clustering thresholds, EPFO avg-delay) are <b>placeholder judgments</b>; their tuning is on the engg follow-ups list, not a spec gap.<br>
+        · <b>No proposed analysis in the spec is structurally impossible</b> with the sources the spec promises (P42 + AOC-4 + Watchout + downstream module feeds). What this mock surfaces is the dependency on Watchout (Submodule 2) and on per-FY auditor PDFs (Submodule 4).
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('active');
+      document.getElementById(t.dataset.tab).classList.add('active');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+</script>
+</body>
+</html>

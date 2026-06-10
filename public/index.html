@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Legal DD Tester — Probe42 + Watchout</title>
+<link rel="stylesheet" href="/app/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Controls -->
+  <div class="controls">
+    <select id="entityPicker" title="Pick a Probe42 sandbox entity"><option value="">Loading sandbox list…</option></select>
+    <input class="cin" id="cin" placeholder="…or type a CIN / PAN / LLPIN" value="L74120MH1985PLC035308">
+    <select id="idType" title="Identifier type">
+      <option value="CIN">CIN</option>
+      <option value="PAN">PAN</option>
+      <option value="LLPIN">LLPIN</option>
+    </select>
+    <select id="fixtureKey" title="Fixture entity (fixtures mode)">
+      <option value="default">Fixture: ACC (default)</option>
+    </select>
+    <label><input type="checkbox" id="useWatchout"> Use Watchout</label>
+    <label><input type="checkbox" id="useFixtures"> Fixtures (no API calls)</label>
+    <button id="run">Load</button>
+    <div class="spacer"></div>
+    <span class="mode-pill" id="modePill">…</span>
+  </div>
+
+  <div id="report"><div class="loading">Click <b>Load</b> to run the tester.</div></div>
+</div>
+
+<script type="module" src="/app/main.js"></script>
+</body>
+</html>

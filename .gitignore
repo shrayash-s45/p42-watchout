@@ -1,0 +1,26 @@
+# ── Dependencies ──
+node_modules/
+
+# ── Secrets / environment (NEVER commit) ──
+.env
+.env.*
+!.env.example
+
+# ── Confidential third-party material ──
+# Probe42 sandbox entity list (STRICTLY CONFIDENTIAL)
+*.confidential.*
+# Watchout/PRIME proprietary API documentation (encryption method + sample creds)
+*.pdf
+watchoutinvestors.com Encrypted API Documentation.pdf
+
+# ── Keys / certs (safety net) ──
+*.pem
+*.key
+*.p12
+*.keystore
+
+# ── OS / editor / build noise ──
+.DS_Store
+*.log
+.vercel
+/tmp/
