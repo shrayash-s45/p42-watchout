@@ -10,6 +10,9 @@ on every field the APIs can't fill.
 > decrypt is proven end-to-end (real records retrieved and decrypted). It runs in **fixtures
 > mode** out of the box, so the whole pipeline is demoable without any credentials.
 
+> 📘 **Integrating either API?** Read [`CONTRACT.md`](CONTRACT.md) first — it documents every
+> endpoint, auth, the Watchout AES encryption, response codes, and verified working examples.
+
 ---
 
 ## Scope
@@ -75,6 +78,9 @@ API returned.
 ---
 
 ## Key behaviours learned (and handled)
+
+_Full detail, endpoints, and working examples in [`CONTRACT.md`](CONTRACT.md)._
+
 
 - **Watchout matches by NAME, not bare ID.** IDs are stored prefixed (e.g. `PAN:AAACU0589R`),
   so bare CIN/DIN lookups return `A200`. The app searches entities/directors **by name**.
