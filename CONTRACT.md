@@ -142,16 +142,20 @@ curl -s "https://api.probe42.in/probe_pro_sandbox/companies/L74120MH1985PLC03530
   -H "x-api-key: $PROBE42_API_KEY" -H "Accept: application/json" -H "x-api-version: 1.3"
 ```
 
-**Returned `200`** (~1.1 MB). Actual response, trimmed (real values; long arrays cut with `// …`):
+**Returned `200`** (~1.1 MB). The **complete verbatim response** is committed at
+[`examples/probe42-company-details.json`](examples/probe42-company-details.json). Below is the
+**same response annotated**, with one element per array (real values; arrays truncated with `// …`):
+
 ```jsonc
 {
-  "metadata": {
+  "metadata": {                                  // freshness + document token
     "api_version": "1.3",
-    "last_updated": "2026-06-04",
+    "last_updated": "2026-06-04",                // how current Probe's data is
     "identifier_changed": false,
-    "document_list_token": "6a294e55889b745699050bad"
+    "document_list_token": "6a280a8c4053c48f94061571"
   },
   "data": {
+    // ── Identity / status ──
     "company": {
       "cin": "L74120MH1985PLC035308",
       "legal_name": "GODREJ PROPERTIES LIMITED",
@@ -161,96 +165,150 @@ curl -s "https://api.probe42.in/probe_pro_sandbox/companies/L74120MH1985PLC03530
       "efiling_status": "Active",
       "active_compliance": "ACTIVE compliant",
       "incorporation_date": "1985-02-08",
-      "paid_up_capital": 1506038705,        // raw rupees → ₹150.60 Cr
+      "paid_up_capital": 1506038705,             // RAW RUPEES → ÷1e7 = ₹150.60 Cr
       "authorized_capital": 6690000000,
-      "sum_of_charges": 65456500000,
-      "cirp_status": null,
+      "sum_of_charges": 65456500000,             // total secured borrowing (raw ₹)
+      "cirp_status": null,                       // IBC/insolvency flag (Submodule 1 distress)
       "last_agm_date": "2025-08-01",
       "last_filing_date": "2025-03-31",
       "website": "https://www.godrejproperties.com/",
       "email": "secretarial@godrejproperties.com",
       "lei": { "number": "335800KM3Y5NZWXOE183", "status": "ISSUED", "next_renewal_date": "2027-04-13" },
-      "registered_address": {
-        "full_address": "Godrej One, 5th Floor, Pirojshanagar, Eastern Express Highway, Vikhroli (East), Mumbai, Maharashtra - 400079",
-        "city": "Mumbai", "state": "Maharashtra", "pincode": "400079"
-      }
+      "registered_address": { "full_address": "Godrej One, 5th Floor, … Vikhroli (East), Mumbai - 400079", "city": "Mumbai", "state": "Maharashtra", "pincode": "400079" },
+      "business_address": { "city": "Mumbai", "pincode": 400079, "state": "MAHARASHTRA" }
     },
 
-    "key_indicators": {
-      "revenue": "More than 1000 cr.",
-      "profit": "More than 5 cr.",
-      "employee_count": "Upto 100",
-      "pending_cases_filed_against_this_corporate": true,
-      "bureau_defaults": false,
-      "gst_filing_delay": false,
-      "epf_payment_delay": null
-    },
+    "description": { "desc_thousand_char": "Godrej Properties Limited (GPL) … real estate venture of the Godrej Group …" },
+    "name_history": [ { "name": "GODREJ PROPERTIES & INVESTMENTS LIMITED", "date": "2008-05-14" } ],
 
-    "legal_history": [
+    // ── Directors (Submodule 2) ──
+    "authorized_signatories": [                   // current signatories/directors
       {
-        "petitioner": "KARAN GILL & ANR.",
-        "respondent": "GODREJ PROPERTIES LTD.",
-        "court": "National Consumer Disputes Redressal Commission",
-        "date": "2018-12-18",
-        "case_status": "Pending",
-        "case_number": "IA/9637/2016",
-        "case_type": "Cases Filed Against This Corporate",
-        "case_category": "Applications",
-        "severity": "low"
-      }
-      // … 200+ more rows (total 216 pending across against/by)
-    ],
-
-    "authorized_signatories": [
-      {
-        "pan": "ALCPB9271H",
-        "din": "09302960",
-        "name": "INDU BHUSHAN",
-        "designation": "Director",
-        "din_status": "Approved",                 // verbatim MCA reason string
-        "gender": "Male",
-        "date_of_birth": "1961-01-06",
-        "age": 65,
+        "pan": "ALCPB9271H", "din": "09302960", "name": "INDU BHUSHAN", "designation": "Director",
+        "din_status": "Approved",                // VERBATIM MCA reason → parse for disqualification / DIR-3 KYC
+        "gender": "Male", "date_of_birth": "1961-01-06", "age": 65,
         "date_of_appointment": "2022-05-03",
         "date_of_appointment_for_current_designation": "2022-07-04",
-        "date_of_cessation": null,
-        "nationality": "India",
-        "dsc_status": null,
-        "association_history": [
-          { "event": null, "designation_after_event": "Director", "event_date": "2022-07-04", "filing_date": null },
-          { "event": null, "designation_after_event": "Additional Director", "event_date": "2022-05-03", "filing_date": null }
-        ]
+        "date_of_cessation": null,               // null = active director
+        "nationality": "India", "dsc_status": null, "dsc_expiry_date": null, "father_name": null,
+        "address": { "address_line1": null, "city": null, "state": null, "pincode": null, "country": null },
+        "association_history": [ { "event": null, "designation_after_event": "Director", "event_date": "2022-07-04", "filing_date": null } ]
       }
-      // … more directors (9 total)
+      // … 9 directors total
     ],
 
-    "director_network": [
+    "director_network": [                          // other directorships per director → strike-off exposure
       {
-        "name": "AMITAVA MUKHERJEE",
-        "pan": "AAEPM4024G",
-        "din": "00003285",
+        "name": "AMITAVA MUKHERJEE", "pan": "AAEPM4024G", "din": "00003285",
         "network": {
           "companies": [
             {
-              "cin": "U33125MH1995PTC090076",
-              "legal_name": "TEXANLAB LABORATORIES PRIVATE LIMITED",
-              "company_status": "ACTIVE",          // cross-check vs "Strike Off" for exposure
-              "designation": "Director",
-              "date_of_appointment": "2017-04-25",
-              "date_of_cessation": null
+              "cin": "U33125MH1995PTC090076", "legal_name": "TEXANLAB LABORATORIES PRIVATE LIMITED",
+              "company_status": "ACTIVE",         // cross-check vs "Strike Off" for exposure
+              "incorporation_date": "1995-06-29", "paid_up_capital": 100400800, "city": "Navi Mumbai",
+              "active_compliance": "ACTIVE compliant", "cirp_status": null, "designation": "Director",
+              "date_of_appointment": "2017-04-25", "date_of_cessation": "2023-07-03"
             }
             // … more companies
           ],
-          "llps": [ /* same shape */ ]
+          "llps": []                              // same shape for LLPs
         }
       }
       // … one entry per director
-    ]
+    ],
 
-    // … 35+ more sections (financials, shareholdings, gst_details, defaulter_list, … — see list above)
+    "contact_details": { "email": [ { "emailId": "secretarial@godrejproperties.com", "status": null } ], "phone": [ { "phoneNumber": "02261698500", "status": null } ] },
+
+    // ── Charges / borrowings (distress signal) ──
+    "open_charges": [ { "id": 100603359, "date": "2025-10-03", "holder_name": "CATALYST TRUSTEESHIP LIMITED", "amount": 55505000000, "type": "Modification" } ],
+    "open_charges_latest_event": [ { "id": 100603359, "amount": 55505000000, "type": "Modification", "rate_of_interest": "8.60%", "number_of_chargeholder": 1, "filing_date": "2025-10-13", "joint_holding": "NO", "consortium_holding": "NO", "property_type": "Immovable property … Commercial …" } ],
+    "charge_sequence": [ { "charge_id": 100603359, "status": "Modification", "date": "2025-09-19", "amount": 55505000000, "holder_name": "CATALYST TRUSTEESHIP LIMITED", "number_of_holder": 1 } ],
+
+    // ── Financials (raw ₹; STANDALONE + CONSOLIDATED across years) ──
+    "financials": [
+      {
+        "year": "2025-03-31", "nature": "STANDALONE", "filing_type": "XBRL", "filing_standard": "Schedule III",
+        "ratios": { "revenue_growth": 46.52, "net_margin": 51.86, "ebitda_margin": -17.44, "return_on_equity": 5.8, "debt_by_equity": 0.69, "current_ratio": 1.73, "interest_coverage_ratio": 3.24, "cash_conversion_cycle": 2656.47 },
+        "bs": { "assets": { "given_assets_total": 439435900000, "inventories": 153126800000, "cash_and_bank_balances": 40599800000 }, "liabilities": { "share_capital": 1505900000, "reserves_and_surplus": 172935500000, "given_liabilities_total": 439435900000 }, "subTotals": { "total_equity": 174441400000, "total_debt": 119680900000 }, "metadata": { "doc_id": "442/…/FinancialStatements-2025-03-31.pdf" } },
+        "pnl": { "lineItems": { "net_revenue": 19496200000, "other_income": 22077600000, "profit_before_tax": 12648200000, "income_tax": 2538100000, "profit_after_tax": 10110100000 } },
+        "cash_flow": { "cash_flows_from_used_in_operating_activities": -17578400000, "cash_flow_statement_at_end_of_period": 8204800000 },
+        "auditor": { "auditor_name": "ANIRUDDHA SHREEKANT GODBOLE", "auditor_firm_name": "B S R & CO LLP", "firm_registration_number": "101248W/W100022" },
+        "auditor_comments": { "report_has_adverse_remarks": false, "disclosures_auditor_report": [], "disclosures_director_report": [] }
+      }
+      // … more years / CONSOLIDATED
+    ],
+    "nbfc_financials": [],
+    "financial_parameters": [ { "year": "2025", "nature": "STANDALONE", "transaction_related_parties_as_18": 14211900000, "prescribed_csr_expenditure": 143100000, "total_amount_csr_spent_for_financial_year": 143200000, "proposed_dividend": "No" } ],
+
+    // ── Business / industry ──
+    "industry_segments": [ { "industry": "Real Estate", "segments": ["Builders and Developers"] } ],
+    "principal_business_activities": [ { "year": "2025", "main_activity_group_code": "L", "business_activity_description": "Real Estate activities", "percentage_of_turnover": 100 } ],
+
+    // ── Related parties (cross-flag director other-directorships) ──
+    "related_party_transactions": [ { "financial_year": "2025-03-31", "company": [ { "name": "GODREJ INDUSTRIES LIMITED", "relationship": "Holding Company", "type_of_transaction": "Expense", "amount": 265700000, "cin": "L24241MH1988PLC097781" } ], "llp": [], "individual": [], "others": [] } ],
+
+    "establishments_registered_with_epfo": [],
+
+    // ── Shareholding ──
+    "shareholdings": [ { "shareholders": "promoter", "financial_year": "2025-03-31", "category": "equity", "body_corporate_held_percentage_of_shares": 46.36, "total_no_of_shares": 140553593, "total_percentage_of_shares": 46.67 } ],
+    "shareholdings_more_than_five_percent": [ { "company": [ { "name": "GODREJ INDUSTRIES LIMITED", "shareholding_percentage": 44.77, "no_of_shares": 134849594 } ], "financial_year": "2025-03-31" } ],
+    "shareholdings_summary": [ { "financial_year": "2025-03-31", "total_equity_shares": 301184878, "promoter": 24, "public": 163446, "total": 163470 } ],   // COUNTS, not percentages
+    "director_shareholdings": [ { "financial_year": "2025-03-31", "din_pan": "00432983", "full_name": "PIROJSHA ADI GODREJ", "designation": "Wholetime Director", "no_of_shares": 10, "percentage_holding": 0 } ],
+
+    // ── Distress / legal (Submodule 1) ──
+    "bifr_history": [],                            // legacy "sick company"
+    "cdr_history": [],                             // debt restructuring
+    "defaulter_list": [],                          // bureau/regulator defaults
+    "legal_history": [                             // ← THE HEART of Submodule 1 (case-level, court-keyed, native severity)
+      {
+        "petitioner": "KARAN GILL & ANR.", "respondent": "GODREJ PROPERTIES LTD.",
+        "court": "National Consumer Disputes Redressal Commission", "date": "2018-12-18",
+        "case_status": "Pending", "case_number": "IA/9637/2016",
+        "case_type": "Cases Filed Against This Corporate", "case_category": "Applications",
+        "severity": "low"
+      }
+      // … 200+ more rows
+    ],
+
+    // ── Credit ratings ──
+    "credit_ratings": [ { "rating_date": "2025-10-17", "rating_agency": "icra", "rating": "AA+ (Stable/Outstanding)", "type_of_loan": "Cash Credit (Long Term Fund Based)", "currency": "INR", "amount": 86250000000, "rating_details": [ { "rating": "AA+", "action": "Outstanding", "outlook": "Stable" } ] } ],
+    "credit_rating_rationale": [ { "rating_agency": "icra", "financial_year": "2025-10-17", "doc_id": "442/…/1760712697707-1760639400.pdf" } ],   // doc_id → endpoint 8 PDF
+    "unaccepted_rating": null,
+
+    // ── Group structure (OBJECTS with company[]/llp[]/others[], not flat arrays) ──
+    "holding_entities":    { "financial_year": "2025", "company": [ { "cin": "L24241MH1988PLC097781", "legal_name": "GODREJ INDUSTRIES LIMITED", "share_holding_percentage": 44.77, "status": "ACTIVE" } ], "llp": [], "others": [] },
+    "subsidiary_entities": { "financial_year": "2025", "company": [ { "cin": "U70200MH2018PTC317814", "legal_name": "ASHANK LAND & BUILDING PRIVATE LIMITED", "share_holding_percentage": 100, "status": "ACTIVE" } ], "llp": [ { "llpin": "AAO-0256", "legal_name": "ASHANK FACILITY MANAGEMENT LLP", "share_holding_percentage": 100, "status": "ACTIVE" } ], "others": [] },
+    "associate_entities":  { "financial_year": "2025", "company": [ { "cin": "U70200MH2013PTC251378", "legal_name": "GODREJ GREEN HOMES PRIVATE LIMITED", "share_holding_percentage": 50, "status": "ACTIVE" } ], "llp": [], "others": [] },
+    "joint_ventures":      { "financial_year": "2025", "company": [ { "cin": "U70200MH2013PTC251378", "legal_name": "GODREJ GREEN HOMES PRIVATE LIMITED", "share_holding_percentage": 50 } ], "llp": [ { "llpin": "AAF-6499", "legal_name": "AR LANDCRAFT LLP", "share_holding_percentage": 50 } ], "others": [] },
+
+    "securities_allotment": [ { "allotment_type": "Cash", "allotment_date": "2026-03-09", "instrument": "Equity Shares Without Differential Rights", "total_amount_raised": 6985, "number_of_securities_allotted": 1397 } ],
+    "peer_comparison": [ { "bizIndustry": "Real Estate", "bizSegment": "Builders and Developers", "refYear": "2025", "peers": [ { "cin": "U70102KA1996PTC019532", "legalName": "BAGMANE DEVELOPERS PRIVATE LIMITED", "revenue": 20257690000 } ], "benchMarks": [ { "year": "2025", "no_of_peers_in_sample": 30, "median_net_margin": 16.59 } ] } ],
+
+    // ── Tax / compliance ──
+    "gst_details": [ { "gstin": "04AAACG3995M1Z9", "status": "Active", "state": "Chandigarh", "date_of_registration": "2017-07-01", "taxpayer_type": "Regular", "filing_timeliness": "Filed on Time", "filings": [ { "return_type": "GSTR3B", "date_of_filing": "2026-05-20", "filing_due_date": "2026-05-20", "status": "Filed", "filing_timeliness": "Filed on Time" } ] } ],
+    "struckoff248_details": { "struck_off_status": "As per our records, this corporate name was never removed under section 248(5) by ROC", "restored_status": null },
+    "msme_supplier_payment_delays": { "trend": [ { "period": "October 2023 to March 2024", "amount": 120825551.39 } ], "delays_for_period": { "latest_period": "October 2025 to March 2026", "total_amount_due_for_period": 26253493.69, "delays": [ { "supplier_name": "AJR Electrical Infra", "supplier_pan": "AABFI9969D", "amount_due": 232 } ] } },
+
+    // ── Financial-dispute matters (the only place Probe surfaces ₹ claim amounts) ──
+    "legal_cases_of_financial_disputes": { "payable": [ { "type_of_financial_dispute": "LOAN RECOVERY", "amount_under_default": null, "verdict": "OTHERS", "court": "National Company Law Tribunal", "litigant": "GODREJ PROPERTIES LTD", "case_no": "C.P. (IB) - 4604/2019", "date_of_judgement": "2022-10-14" } ] },
+
+    // ── Scores + headline flags ──
+    "probe_financial_score": { "overall_financial_score": 3, "growth_score": 5, "profitability_score": 2, "liquidity_score": 4, "solvency_score": 3, "efficiency_score": 1 },
+    "key_indicators": {
+      "revenue": "More than 1000 cr.", "profit": "More than 5 cr.", "employee_count": "Upto 100",
+      "pending_cases_filed_against_this_corporate": true,   // Submodule 1 headline
+      "bureau_defaults": false, "gst_filing_delay": false, "epf_payment_delay": null
+    },
+    "filing_dates": { "aoc_4": { "financial_year": "2025-03-31", "filing_date": "2025-08-29" }, "mgt_7": { "financial_year": "2025-03-31", "filing_date": "2025-09-27" } }
   }
 }
 ```
+
+> **Field-note recap (DD-relevant):** `legal_history` drives Submodule 1; `authorized_signatories.din_status`
+> + `director_network` drive Submodule 2; `paid_up_capital`/financials are **raw rupees** (÷1e7);
+> `holding/subsidiary/associate/joint_ventures` are **objects** with `company[]/llp[]/others[]`;
+> `shareholdings_summary` is **counts** not %; `credit_rating_rationale.doc_id` → fetch via endpoint 8;
+> `legal_cases_of_financial_disputes` is the only section carrying ₹ claim context (often `null`).
 
 ---
 

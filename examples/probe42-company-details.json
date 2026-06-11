@@ -1,0 +1,657 @@
+{
+  "metadata": {
+    "api_version": "1.3",
+    "last_updated": "2026-06-04",
+    "identifier_changed": false,
+    "document_list_token": "6a280a8c4053c48f94061571"
+  },
+  "data": {
+    "company": {
+      "cin": "L74120MH1985PLC035308",
+      "legal_name": "GODREJ PROPERTIES LIMITED",
+      "efiling_status": "Active",
+      "incorporation_date": "1985-02-08",
+      "paid_up_capital": 1506038705,
+      "sum_of_charges": 65456500000,
+      "authorized_capital": 6690000000,
+      "active_compliance": "ACTIVE compliant",
+      "cirp_status": null,
+      "lei": {
+        "number": "335800KM3Y5NZWXOE183",
+        "status": "ISSUED",
+        "registration_date": "2018-04-13",
+        "last_updated_date": "2026-02-23",
+        "next_renewal_date": "2027-04-13"
+      },
+      "registered_address": {
+        "full_address": "Godrej One, 5th Floor, Pirojshanagar   Eastern Express Highway, Vikhroli (East), ,Mumbai, Mumbai City, Maharashtra - 400079",
+        "address_line1": "Godrej One, 5th Floor, Pirojshanagar   Eastern Express Highway, Vikhroli (East)",
+        "address_line2": ",",
+        "city": "Mumbai",
+        "pincode": "400079",
+        "state": "Maharashtra"
+      },
+      "business_address": {
+        "address_line1": "5th Floor, Godrej One,",
+        "address_line2": "Eastern Express Highway, Pirojshanagar, Vikhroli East",
+        "city": "Mumbai",
+        "pincode": 400079,
+        "state": "MAHARASHTRA"
+      },
+      "pan": "AAACG3995M",
+      "website": "https://www.godrejproperties.com/",
+      "classification": "Public Limited Indian Non-Government Company",
+      "status": "Listed",
+      "next_cin": null,
+      "last_agm_date": "2025-08-01",
+      "last_filing_date": "2025-03-31",
+      "email": "secretarial@godrejproperties.com"
+    },
+    "description": {
+      "desc_thousand_char": "Godrej Properties Limited (GPL), as per its credit rating report, is the real estate venture of the Godrej Group. The company has undertaken projects such as Godrej BKC, Godrej Eternia, Godrej Central, Godrej City, Godrej Emerald, Godrej Eternity, Godrej Exquisite, and Godrej Forest Grove, among others. GPL has delivered 22 million sq. ft. of real estate and currently has around 186 MSF of saleable area spread across 84 projects. GPL has a projects located in Noida, Bengaluru, Delhi, Pune, Kolkata, Sonipat, Nagpur, Indore, and Vadodara, among others."
+    },
+    "name_history": [
+      {
+        "name": "GODREJ PROPERTIES & INVESTMENTS LIMITED",
+        "date": "2008-05-14"
+      }
+    ],
+    "authorized_signatories": [
+      {
+        "pan": "ALCPB9271H",
+        "din": "09302960",
+        "name": "INDU BHUSHAN",
+        "designation": "Director",
+        "din_status": "Approved",
+        "gender": "Male",
+        "date_of_birth": "1961-01-06",
+        "age": 65,
+        "date_of_appointment": "2022-05-03",
+        "date_of_appointment_for_current_designation": "2022-07-04",
+        "date_of_cessation": null,
+        "nationality": "India",
+        "dsc_status": null,
+        "dsc_expiry_date": null,
+        "father_name": null,
+        "address": {
+          "address_line1": null,
+          "address_line2": null,
+          "city": null,
+          "state": null,
+          "pincode": null,
+          "country": null
+        },
+        "association_history": [
+          {
+            "event": null,
+            "designation_after_event": "Director",
+            "event_date": "2022-07-04",
+            "filing_date": null
+          }
+        ]
+      }
+    ],
+    "director_network": [
+      {
+        "name": "AMITAVA MUKHERJEE",
+        "pan": "AAEPM4024G",
+        "din": "00003285",
+        "network": {
+          "companies": [
+            {
+              "cin": "U33125MH1995PTC090076",
+              "legal_name": "TEXANLAB LABORATORIES PRIVATE LIMITED",
+              "company_status": "ACTIVE",
+              "incorporation_date": "1995-06-29",
+              "paid_up_capital": 100400800,
+              "sum_of_charges": 0,
+              "city": "Navi Mumbai",
+              "active_compliance": "ACTIVE compliant",
+              "cirp_status": null,
+              "designation": "Director",
+              "date_of_appointment": "2017-04-25",
+              "date_of_appointment_for_current_designation": "2017-09-29",
+              "date_of_cessation": "2023-07-03"
+            }
+          ],
+          "llps": []
+        }
+      }
+    ],
+    "contact_details": {
+      "email": [
+        { "emailId": "secretarial@godrejproperties.com", "status": null }
+      ],
+      "phone": [
+        { "phoneNumber": "02261698500", "status": null }
+      ]
+    },
+    "open_charges": [
+      {
+        "id": 100603359,
+        "date": "2025-10-03",
+        "holder_name": "CATALYST TRUSTEESHIP LIMITED",
+        "amount": 55505000000,
+        "type": "Modification"
+      }
+    ],
+    "open_charges_latest_event": [
+      {
+        "id": 100603359,
+        "date": "2025-10-03",
+        "holder_name": "CATALYST TRUSTEESHIP LIMITED",
+        "amount": 55505000000,
+        "type": "Modification",
+        "property_type": "Immovable property or any interest therein - Commercial Immovable property or any interest therein - Others",
+        "number_of_chargeholder": 1,
+        "instrument_description": "Memorandum of Entry for Creation of Charge by way of Mortagate by Deposit of Title Deeds dated October 03, 2025.",
+        "filing_date": "2025-10-13",
+        "rate_of_interest": "8.60%",
+        "terms_of_payment": "as per sanctioned letter April 21, 2025",
+        "joint_holding": "NO",
+        "consortium_holding": "NO"
+      }
+    ],
+    "charge_sequence": [
+      {
+        "charge_id": 100603359,
+        "status": "Modification",
+        "date": "2025-09-19",
+        "amount": 55505000000,
+        "holder_name": "CATALYST TRUSTEESHIP LIMITED",
+        "number_of_holder": 1,
+        "property_type": "Movable property - Inventory (incl. Receivables),Movable property - Others,Intangible - Others,Uncalled share capital,Book debts,Others (Hypothecation of all current assets as defined in the Agreement)",
+        "filing_date": "2025-10-03",
+        "property_particulars": "Part A of Schedule of the hypothecation agreement"
+      }
+    ],
+    "financials": [
+      {
+        "year": "2025-03-31",
+        "nature": "STANDALONE",
+        "stated_on": "2025-03-31",
+        "filing_type": "XBRL",
+        "start_date": "2024-04-01",
+        "filing_standard": "Schedule III",
+        "ratios": {
+          "revenue_growth": 46.52,
+          "gross_profit_margin": null,
+          "net_margin": 51.86,
+          "ebitda_margin": -17.44,
+          "return_on_equity": 5.8,
+          "return_on_capital_employed": 6.22,
+          "debt_ratio": 0.27,
+          "debt_by_equity": 0.69,
+          "interest_coverage_ratio": 3.24,
+          "current_ratio": 1.73,
+          "quick_ratio": 1.05,
+          "inventory_by_sales_days": 2866.78,
+          "debtors_by_sales_days": 53.15,
+          "payables_by_sales_days": 263.46,
+          "cash_conversion_cycle": 2656.47,
+          "sales_by_net_fixed_assets": 3.64
+        },
+        "bs": {
+          "assets": {
+            "tangible_assets": 5212500000,
+            "intangible_assets": 138200000,
+            "tangible_assets_capital_work_in_progress": 935300000,
+            "intangible_assets_under_development": 5900000,
+            "noncurrent_investments": 34566000000,
+            "deferred_tax_assets_net": 0,
+            "long_term_loans_and_advances": 9109600000,
+            "other_noncurrent_assets": 1130800000,
+            "current_investments": 34536800000,
+            "inventories": 153126800000,
+            "trade_receivables": 2838900000,
+            "cash_and_bank_balances": 40599800000,
+            "short_term_loans_and_advances": 121264600000,
+            "other_current_assets": 35970700000,
+            "given_assets_total": 439435900000
+          },
+          "liabilities": {
+            "share_capital": 1505900000,
+            "reserves_and_surplus": 172935500000,
+            "long_term_borrowings": 40000000000,
+            "deferred_tax_liabilities_net": 82800000,
+            "other_long_term_liabilities": 717500000,
+            "long_term_provisions": 252700000,
+            "short_term_borrowings": 79680900000,
+            "trade_payables": 14072600000,
+            "other_current_liabilities": 129484900000,
+            "short_term_provisions": 703100000,
+            "given_liabilities_total": 439435900000
+          },
+          "subTotals": {
+            "total_equity": 174441400000,
+            "total_non_current_liabilities": 41053000000,
+            "total_current_liabilities": 223941500000,
+            "net_fixed_assets": 5350700000,
+            "total_current_assets": 388337600000,
+            "capital_wip": 941200000,
+            "total_debt": 119680900000,
+            "total_other_non_current_assets": 44806400000
+          },
+          "metadata": {
+            "doc_id": "442/L74120MH1985PLC035308/mca/AnnualReturnsEform/8a7f325ccd9c72e77a1fb852ad63922bv1.pdf",
+            "xml_to_pdf_converted_doc_id": "442/L74120MH1985PLC035308/mca/AnnualReturnsEform/8a7f325ccd9c72e77a1fb852ad63922bv1_560275893-L74120MH1985PLC035308-Std-FinancialStatements-2025-03-31-5.pdf"
+          },
+          "notes": {
+            "gross_fixed_assets": 7352800000,
+            "trade_receivable_exceeding_six_months": null
+          }
+        },
+        "pnl": {
+          "lineItems": {
+            "net_revenue": 19496200000,
+            "total_cost_of_materials_consumed": 72650200000,
+            "total_changes_in_inventories_or_finished_goods": -60520700000,
+            "total_employee_benefit_expense": 2835700000,
+            "total_other_expenses": 7931900000,
+            "operating_profit": -3400900000,
+            "other_income": 22077600000,
+            "depreciation": 374300000,
+            "profit_before_interest_and_tax": 18302400000,
+            "interest": 5654200000,
+            "profit_before_tax": 12648200000,
+            "income_tax": 2538100000,
+            "profit_after_tax": 10110100000
+          },
+          "subTotals": { "total_operating_cost": 22897100000 },
+          "revenue_breakup": { "revenue_from_operations": 19496200000 },
+          "depreciation_breakup": { "depreciation": 374300000 }
+        },
+        "cash_flow": {
+          "profit_before_tax": 12648200000,
+          "cash_flows_from_used_in_operating_activities": -17578400000,
+          "cash_flows_from_used_in_investing_activities": -51723200000,
+          "cash_flows_from_used_in_financing_activities": 68094900000,
+          "incr_decr_in_cash_cash_equv": -1206700000,
+          "cash_flow_statement_at_end_of_period": 8204800000
+        },
+        "pnl_key_schedule": {
+          "managerial_remuneration": 0,
+          "payment_to_auditors": 22600000,
+          "insurance_expenses": 35600000,
+          "power_and_fuel": 0
+        },
+        "auditor": {
+          "auditor_name": "ANIRUDDHA SHREEKANT GODBOLE",
+          "auditor_firm_name": "B S R & CO LLP",
+          "pan": "AAAFB9852F",
+          "membership_number": "105149",
+          "firm_registration_number": "101248W/W100022",
+          "address": "FLAT NO 304 C WING  THE RESIDENCY GOREGAON CHS LTD VISHVESHWAR NAGAR ROAD  MUMBAI 400063"
+        },
+        "auditor_comments": {
+          "report_has_adverse_remarks": false,
+          "disclosures_auditor_report": [],
+          "disclosures_director_report": []
+        },
+        "auditor_additional": null
+      }
+    ],
+    "nbfc_financials": [],
+    "financial_parameters": [
+      {
+        "year": "2025",
+        "nature": "STANDALONE",
+        "transaction_related_parties_as_18": 14211900000,
+        "employee_benefit_expense": 2835700000,
+        "prescribed_csr_expenditure": 143100000,
+        "total_amount_csr_spent_for_financial_year": 143200000,
+        "gross_fixed_assets": 7352800000,
+        "proposed_dividend": "No"
+      }
+    ],
+    "industry_segments": [
+      { "industry": "Real Estate", "segments": ["Builders and Developers"] }
+    ],
+    "principal_business_activities": [
+      {
+        "year": "2025",
+        "main_activity_group_code": "L",
+        "main_activity_group_description": "Real Estate activities",
+        "business_activity_code": "68",
+        "business_activity_description": "Real Estate activities",
+        "percentage_of_turnover": 100
+      }
+    ],
+    "related_party_transactions": [
+      {
+        "financial_year": "2025-03-31",
+        "company": [
+          {
+            "name": "GODREJ INDUSTRIES LIMITED",
+            "legal_name": "GODREJ INDUSTRIES LIMITED",
+            "relationship": "Holding Company",
+            "type_of_transaction": "Expense",
+            "amount": 265700000,
+            "cin": "L24241MH1988PLC097781"
+          }
+        ],
+        "llp": [],
+        "individual": [],
+        "others": []
+      }
+    ],
+    "establishments_registered_with_epfo": [],
+    "shareholdings": [
+      {
+        "shareholders": "promoter",
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "category": "equity",
+        "body_corporate_held_no_of_shares": 139623098,
+        "body_corporate_held_percentage_of_shares": 46.36,
+        "others_held_no_of_shares": 930434,
+        "others_held_percentage_of_shares": 0.31,
+        "total_no_of_shares": 140553593,
+        "total_percentage_of_shares": 46.67
+      }
+    ],
+    "shareholdings_more_than_five_percent": [
+      {
+        "company": [
+          {
+            "name": "GODREJ INDUSTRIES LIMITED",
+            "shareholding_percentage": 44.77,
+            "no_of_shares": 134849594
+          }
+        ],
+        "llp": [],
+        "individual": [],
+        "others": [],
+        "financial_year": "2025-03-31"
+      }
+    ],
+    "shareholdings_summary": [
+      {
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "total_equity_shares": 301184878,
+        "total_preference_shares": 0,
+        "promoter": 24,
+        "public": 163446,
+        "total": 163470,
+        "metadata": {
+          "doc_id": "442/L74120MH1985PLC035308/mca/AnnualReturnsEform/cb146b7ad1adfa3e14df2fa27faff9d0v1.pdf",
+          "xml_to_pdf_converted_doc_id": null
+        }
+      }
+    ],
+    "director_shareholdings": [
+      {
+        "year": "2025",
+        "financial_year": "2025-03-31",
+        "din_pan": "00432983",
+        "full_name": "PIROJSHA ADI GODREJ",
+        "designation": "Wholetime Director",
+        "date_of_cessation": null,
+        "no_of_shares": 10,
+        "percentage_holding": 0
+      }
+    ],
+    "bifr_history": [],
+    "cdr_history": [],
+    "defaulter_list": [],
+    "legal_history": [
+      {
+        "petitioner": "KARAN GILL & ANR.",
+        "respondent": "GODREJ PROPERTIES LTD.",
+        "court": "National Consumer Disputes Redressal Commission",
+        "date": "2018-12-18",
+        "case_status": "Pending",
+        "case_number": "IA/9637/2016",
+        "case_type": "Cases Filed Against This Corporate",
+        "case_category": "Applications",
+        "severity": "low"
+      }
+    ],
+    "credit_ratings": [
+      {
+        "rating_date": "2025-10-17",
+        "rating_agency": "icra",
+        "rating": "AA+ (Stable/Outstanding)",
+        "rating_details": [
+          { "rating": "AA+", "action": "Outstanding", "outlook": "Stable", "remarks": null }
+        ],
+        "type_of_loan": "Cash Credit (Long Term Fund Based)",
+        "currency": "INR",
+        "amount": 86250000000
+      }
+    ],
+    "credit_rating_rationale": [
+      {
+        "rating_agency": "icra",
+        "financial_year": "2025-10-17",
+        "doc_id": "442/L74120MH1985PLC035308/icra/1760712697707-1760639400.pdf"
+      }
+    ],
+    "unaccepted_rating": null,
+    "holding_entities": {
+      "financial_year": "2025",
+      "company": [
+        {
+          "cin": "L24241MH1988PLC097781",
+          "legal_name": "GODREJ INDUSTRIES LIMITED",
+          "paid_up_capital": 336804842,
+          "sum_of_charges": 4545200639,
+          "incorporation_date": "1988-03-07",
+          "share_holding_percentage": 44.77,
+          "city": "MUMBAI",
+          "status": "ACTIVE",
+          "active_compliance": "ACTIVE compliant",
+          "cirp_status": null,
+          "next_cin": null
+        }
+      ],
+      "llp": [],
+      "others": []
+    },
+    "subsidiary_entities": {
+      "financial_year": "2025",
+      "company": [
+        {
+          "cin": "U70200MH2018PTC317814",
+          "legal_name": "ASHANK LAND & BUILDING PRIVATE LIMITED",
+          "paid_up_capital": 10000,
+          "sum_of_charges": 0,
+          "incorporation_date": "2018-12-04",
+          "share_holding_percentage": 100,
+          "city": "Mumbai",
+          "status": "ACTIVE",
+          "active_compliance": null,
+          "cirp_status": null,
+          "next_cin": null
+        }
+      ],
+      "llp": [
+        {
+          "llpin": "AAO-0256",
+          "legal_name": "ASHANK FACILITY MANAGEMENT LLP",
+          "total_obligation_of_contribution": 5001000,
+          "sum_of_charges": 0,
+          "incorporation_date": "2019-01-14",
+          "share_holding_percentage": 100,
+          "city": "Mumbai",
+          "status": "ACTIVE",
+          "cirp_status": null
+        }
+      ],
+      "others": []
+    },
+    "associate_entities": {
+      "financial_year": "2025",
+      "company": [
+        {
+          "cin": "U70200MH2013PTC251378",
+          "legal_name": "GODREJ GREEN HOMES PRIVATE LIMITED",
+          "paid_up_capital": 7216260,
+          "sum_of_charges": 9500000000,
+          "incorporation_date": "2013-12-24",
+          "share_holding_percentage": 50,
+          "city": "Mumbai",
+          "status": "ACTIVE",
+          "active_compliance": "ACTIVE compliant",
+          "cirp_status": null,
+          "next_cin": null
+        }
+      ],
+      "llp": [],
+      "others": []
+    },
+    "joint_ventures": {
+      "financial_year": "2025",
+      "company": [
+        {
+          "cin": "U70200MH2013PTC251378",
+          "legal_name": "GODREJ GREEN HOMES PRIVATE LIMITED",
+          "paid_up_capital": 7216260,
+          "sum_of_charges": 9500000000,
+          "incorporation_date": "2013-12-24",
+          "share_holding_percentage": 50,
+          "city": "Mumbai",
+          "status": "ACTIVE",
+          "active_compliance": "ACTIVE compliant",
+          "cirp_status": null,
+          "next_cin": null
+        }
+      ],
+      "llp": [
+        {
+          "llpin": "AAF-6499",
+          "legal_name": "AR LANDCRAFT LLP",
+          "total_obligation_of_contribution": 501000000,
+          "sum_of_charges": 437300000,
+          "incorporation_date": "2016-02-05",
+          "share_holding_percentage": 50,
+          "city": "Gurgaon",
+          "status": "ACTIVE",
+          "cirp_status": null
+        }
+      ],
+      "others": []
+    },
+    "securities_allotment": [
+      {
+        "allotment_type": "Cash",
+        "allotment_date": "2026-03-09",
+        "instrument": "Equity Shares Without Differential Rights",
+        "total_amount_raised": 6985,
+        "number_of_securities_allotted": 1397,
+        "nominal_amount_per_security": 5,
+        "premium_amount_per_security": 0
+      }
+    ],
+    "peer_comparison": [
+      {
+        "bizIndustry": "Real Estate",
+        "bizSegment": "Builders and Developers",
+        "refYear": "2025",
+        "peers": [
+          {
+            "cin": "U70102KA1996PTC019532",
+            "legalName": "BAGMANE DEVELOPERS PRIVATE LIMITED",
+            "revenue": 20257690000,
+            "city": "BENGALURU"
+          }
+        ],
+        "benchMarks": [
+          {
+            "year": "2025",
+            "no_of_peers_in_sample": 30,
+            "revenue": 1949.62,
+            "net_margin": 51.86,
+            "median_revenue": 1616,
+            "median_net_margin": 16.59,
+            "median_debt_by_equity": 0.54
+          }
+        ]
+      }
+    ],
+    "gst_details": [
+      {
+        "gstin": "04AAACG3995M1Z9",
+        "status": "Active",
+        "company_name": "GODREJ PROPERTIES LIMITED",
+        "trade_name": "GODREJ PROPERTIES LIMITED",
+        "state": "Chandigarh",
+        "state_jurisdiction": "Ward 3",
+        "centre_jurisdiction": "RANGE-IV",
+        "date_of_registration": "2017-07-01",
+        "taxpayer_type": "Regular",
+        "nature_of_business_activities": "Leasing Business | Recipient of Goods or Services | Supplier of Services | Works Contract | Others",
+        "filing_timeliness": "Filed on Time",
+        "filings": [
+          {
+            "return_type": "GSTR3B",
+            "date_of_filing": "2026-05-20",
+            "filing_due_date": "2026-05-20",
+            "financial_year": "2026-2027",
+            "tax_period": "April",
+            "status": "Filed",
+            "filing_timeliness": "Filed on Time"
+          }
+        ]
+      }
+    ],
+    "struckoff248_details": {
+      "struck_off_status": "As per our records, this corporate name was never removed under section 248(5) by ROC",
+      "restored_status": null
+    },
+    "msme_supplier_payment_delays": {
+      "trend": [
+        { "period": "October 2023 to March 2024", "amount": 120825551.39 }
+      ],
+      "delays_for_period": {
+        "latest_period": "October 2025 to March 2026",
+        "total_amount_due_for_period": 26253493.69,
+        "delays": [
+          {
+            "supplier_name": "AJR Electrical Infra",
+            "supplier_pan": "AABFI9969D",
+            "amount_due": 232,
+            "amount_due_from_date": null
+          }
+        ]
+      }
+    },
+    "legal_cases_of_financial_disputes": {
+      "payable": [
+        {
+          "type_of_financial_dispute": "LOAN RECOVERY",
+          "currency": null,
+          "amount_under_default": null,
+          "verdict": "OTHERS",
+          "court": "National Company Law Tribunal",
+          "litigant": "GODREJ PROPERTIES LTD",
+          "case_no": "C.P. (IB) - 4604/2019",
+          "default_date": null,
+          "date_of_judgement": "2022-10-14"
+        }
+      ]
+    },
+    "probe_financial_score": {
+      "overall_financial_score": 3,
+      "growth_score": 5,
+      "profitability_score": 2,
+      "liquidity_score": 4,
+      "solvency_score": 3,
+      "efficiency_score": 1
+    },
+    "key_indicators": {
+      "revenue": "More than 1000 cr.",
+      "profit": "More than 5 cr.",
+      "employee_count": "Upto 100",
+      "pending_cases_filed_against_this_corporate": true,
+      "bureau_defaults": false,
+      "gst_filing_delay": false,
+      "epf_payment_delay": null
+    },
+    "filing_dates": {
+      "aoc_4": { "financial_year": "2025-03-31", "filing_date": "2025-08-29" },
+      "mgt_7": { "financial_year": "2025-03-31", "filing_date": "2025-09-27" }
+    }
+  }
+}
