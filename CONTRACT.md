@@ -61,41 +61,233 @@ x-api-version:  1.3
 | 7 | `GET /companies/{cin}/get-update-status?request_id=<id>` | Poll the probe status |
 | 8 | `GET /companies/{cin}/reference-document-by-id?doc-id=<id>` | Pull an MCA reference PDF |
 
-## 1.6 Comprehensive-details — sections we consume
+---
 
-`GET /companies/{cin}/comprehensive-details` → `{ metadata, data }`. `data` has ~40 sections;
-the relevant ones:
+### Endpoint 1 — Search entities by name
 
-**Submodule 1 (litigation + distress):** `legal_history[]` (the heart — case-level, court-keyed,
-with a native `severity`), `legal_cases_of_financial_disputes[]`, `defaulter_list[]`,
-`bifr_history[]`, `cdr_history[]`, `struckoff248_details[]`, `msme_supplier_payment_delays[]`,
-`open_charges[]`, `company.cirp_status`, `key_indicators{}`.
+```
+GET /entities?filters=<URL-encoded JSON>&limit=<n>
+```
+`filters` must be **URL-encoded JSON**. ⚠️ **The exact filter schema is not in our reference
+docs and must be confirmed against Probe42's full `probe42-api-reference.md`.** Empirically:
+sending a non-JSON value returns `400 {"message":"Invalid JSON"}`, and several plausible JSON
+shapes (`{"name":"godrej"}`, `[{"name":"name","operator":"LIKE","value":"GODREJ"}]`,
+`…"values":[…]`, etc.) all return `400 {"message":"Invalid filters passed"}` — so the schema is
+specific and still **TODO: confirm with Probe42**.
 
-**Submodule 2 (directors):** `authorized_signatories[]` (incl. `din_status` — the **verbatim MCA
-reason string**, so disqualification & DIR-3-KYC are read directly from it), `director_network[]`,
-`related_party_transactions[]`.
+In-app proxy: `GET /api/probe/search?name=<...>&limit=<n>` (see `probe42/client.js → searchEntities`).
 
-> **Gotchas (handled in `probe42/normalize.js`):** monetary statement fields are in **raw rupees**
-> (÷1e7 for ₹ Cr); `holding/subsidiary/associate` are objects `{financial_year, company[], llp[],
-> others[]}` not flat arrays; `din_status` is free text → parse with a tolerant matcher (`legal-dd/din.js`).
+**Representative `200` response shape** (entity identifier records — fields mirror the `company`
+block; *illustrative, pending the confirmed filter schema*):
+```jsonc
+{
+  "metadata": { "api_version": "1.3" },
+  "data": {
+    "entities": [
+      {
+        "cin": "L74120MH1985PLC035308",
+        "legal_name": "GODREJ PROPERTIES LIMITED",
+        "pan": "AAACG3995M",
+        "status": "Listed",
+        "efiling_status": "Active",
+        "classification": "Public Limited Indian Non-Government Company",
+        "incorporation_date": "1985-02-08"
+      }
+      // …more matches up to `limit`
+    ]
+  }
+}
+```
 
-## 1.7 ✅ Working example (verified)
+---
 
-Godrej Properties (sandbox), Watchout off:
+### Endpoints 2 & 3 — Comprehensive company / LLP details
+
+```
+GET /companies/{cin}/comprehensive-details      → { metadata, data }
+GET /llps/{llpin}/comprehensive-details         → same envelope
+```
+
+`data` contains **~40 sections**. The complete list returned for a real company (Godrej):
+```
+company, description, name_history, authorized_signatories, director_network, contact_details,
+open_charges, open_charges_latest_event, charge_sequence, financials, nbfc_financials,
+financial_parameters, industry_segments, principal_business_activities, related_party_transactions,
+establishments_registered_with_epfo, shareholdings, shareholdings_more_than_five_percent,
+shareholdings_summary, director_shareholdings, bifr_history, cdr_history, defaulter_list,
+legal_history, credit_ratings, credit_rating_rationale, unaccepted_rating, holding_entities,
+subsidiary_entities, associate_entities, joint_ventures, securities_allotment, peer_comparison,
+gst_details, struckoff248_details, msme_supplier_payment_delays, legal_cases_of_financial_disputes,
+probe_financial_score, key_indicators, filing_dates
+```
+
+Sections this tester consumes:
+- **Submodule 1 (litigation + distress):** `legal_history[]` (the heart — case-level, court-keyed,
+  native `severity`), `legal_cases_of_financial_disputes[]`, `defaulter_list[]`, `bifr_history[]`,
+  `cdr_history[]`, `struckoff248_details[]`, `msme_supplier_payment_delays[]`, `open_charges[]`,
+  `company.cirp_status`, `key_indicators{}`.
+- **Submodule 2 (directors):** `authorized_signatories[]` (incl. `din_status` — the **verbatim MCA
+  reason string**, so disqualification & DIR-3-KYC are read directly from it), `director_network[]`,
+  `related_party_transactions[]`.
+
+> **Gotchas (handled in `probe42/normalize.js`):** monetary fields are in **raw rupees**
+> (`paid_up_capital: 1506038705` → ÷1e7 = ₹150.60 Cr); `holding/subsidiary/associate` are objects
+> `{financial_year, company[], llp[], others[]}` not flat arrays; `din_status` is free text → parse
+> with a tolerant matcher (`legal-dd/din.js`).
+
+#### ✅ Working example — verified
 
 ```bash
 curl -s "https://api.probe42.in/probe_pro_sandbox/companies/L74120MH1985PLC035308/comprehensive-details" \
-  -H "x-api-key: $PROBE42_API_KEY" \
-  -H "Accept: application/json" \
-  -H "x-api-version: 1.3"
+  -H "x-api-key: $PROBE42_API_KEY" -H "Accept: application/json" -H "x-api-version: 1.3"
 ```
 
-**Returned `200`** with the full profile — e.g. status `Listed`, paid-up `₹150.60 Cr`,
-`legal_history` with 216 pending cases, 9 directors. (In-app: `POST /api/legal-dd` with
-`{ identifier: "L74120MH1985PLC035308", idType: "CIN", useFixtures: false }`.)
+**Returned `200`** (~1.1 MB). Actual response, trimmed (real values; long arrays cut with `// …`):
+```jsonc
+{
+  "metadata": {
+    "api_version": "1.3",
+    "last_updated": "2026-06-04",
+    "identifier_changed": false,
+    "document_list_token": "6a294e55889b745699050bad"
+  },
+  "data": {
+    "company": {
+      "cin": "L74120MH1985PLC035308",
+      "legal_name": "GODREJ PROPERTIES LIMITED",
+      "pan": "AAACG3995M",
+      "status": "Listed",
+      "classification": "Public Limited Indian Non-Government Company",
+      "efiling_status": "Active",
+      "active_compliance": "ACTIVE compliant",
+      "incorporation_date": "1985-02-08",
+      "paid_up_capital": 1506038705,        // raw rupees → ₹150.60 Cr
+      "authorized_capital": 6690000000,
+      "sum_of_charges": 65456500000,
+      "cirp_status": null,
+      "last_agm_date": "2025-08-01",
+      "last_filing_date": "2025-03-31",
+      "website": "https://www.godrejproperties.com/",
+      "email": "secretarial@godrejproperties.com",
+      "lei": { "number": "335800KM3Y5NZWXOE183", "status": "ISSUED", "next_renewal_date": "2027-04-13" },
+      "registered_address": {
+        "full_address": "Godrej One, 5th Floor, Pirojshanagar, Eastern Express Highway, Vikhroli (East), Mumbai, Maharashtra - 400079",
+        "city": "Mumbai", "state": "Maharashtra", "pincode": "400079"
+      }
+    },
 
-**Not-probed flow (endpoint 6 → 7 → retry):** a 404 *"not probed yet"* → `POST .../update`
-(returns `request_id`) → poll `.../get-update-status?request_id=` until ready → re-fetch comprehensive.
+    "key_indicators": {
+      "revenue": "More than 1000 cr.",
+      "profit": "More than 5 cr.",
+      "employee_count": "Upto 100",
+      "pending_cases_filed_against_this_corporate": true,
+      "bureau_defaults": false,
+      "gst_filing_delay": false,
+      "epf_payment_delay": null
+    },
+
+    "legal_history": [
+      {
+        "petitioner": "KARAN GILL & ANR.",
+        "respondent": "GODREJ PROPERTIES LTD.",
+        "court": "National Consumer Disputes Redressal Commission",
+        "date": "2018-12-18",
+        "case_status": "Pending",
+        "case_number": "IA/9637/2016",
+        "case_type": "Cases Filed Against This Corporate",
+        "case_category": "Applications",
+        "severity": "low"
+      }
+      // … 200+ more rows (total 216 pending across against/by)
+    ],
+
+    "authorized_signatories": [
+      {
+        "pan": "ALCPB9271H",
+        "din": "09302960",
+        "name": "INDU BHUSHAN",
+        "designation": "Director",
+        "din_status": "Approved",                 // verbatim MCA reason string
+        "gender": "Male",
+        "date_of_birth": "1961-01-06",
+        "age": 65,
+        "date_of_appointment": "2022-05-03",
+        "date_of_appointment_for_current_designation": "2022-07-04",
+        "date_of_cessation": null,
+        "nationality": "India",
+        "dsc_status": null,
+        "association_history": [
+          { "event": null, "designation_after_event": "Director", "event_date": "2022-07-04", "filing_date": null },
+          { "event": null, "designation_after_event": "Additional Director", "event_date": "2022-05-03", "filing_date": null }
+        ]
+      }
+      // … more directors (9 total)
+    ],
+
+    "director_network": [
+      {
+        "name": "AMITAVA MUKHERJEE",
+        "pan": "AAEPM4024G",
+        "din": "00003285",
+        "network": {
+          "companies": [
+            {
+              "cin": "U33125MH1995PTC090076",
+              "legal_name": "TEXANLAB LABORATORIES PRIVATE LIMITED",
+              "company_status": "ACTIVE",          // cross-check vs "Strike Off" for exposure
+              "designation": "Director",
+              "date_of_appointment": "2017-04-25",
+              "date_of_cessation": null
+            }
+            // … more companies
+          ],
+          "llps": [ /* same shape */ ]
+        }
+      }
+      // … one entry per director
+    ]
+
+    // … 35+ more sections (financials, shareholdings, gst_details, defaulter_list, … — see list above)
+  }
+}
+```
+
+---
+
+### Endpoint 4 — Director network
+
+```
+GET /director/network?din={DIN}        (or ?PAN={PAN})
+```
+Returns every company + LLP a director is/was in (active + past via `date_of_cessation`). Used for
+**other-directorships** and **strike-off exposure** (`company_status == "Strike Off"`). Same per-entity
+shape as the `director_network[].network` block shown above. In-app, this is usually unnecessary —
+`comprehensive-details` already includes `director_network`.
+
+### Endpoint 5 — Director by id
+
+```
+GET /directors/{id}?identifier_type=DIN|PAN   →  { data: { director: { … } } }
+```
+Director identity + `din_status` + DSC status. Use when starting from a DIN rather than a company.
+
+### Endpoints 6 & 7 — Not-probed flow
+
+A first-time entity returns `404` with body *"Entity requested is not probed yet. Call update()…"*:
+```
+POST /companies/{cin}/update                          → { request_id }
+GET  /companies/{cin}/get-update-status?request_id=…  → status (poll a few minutes)
+→ then re-fetch /comprehensive-details
+```
+This tester surfaces the not-probed signal rather than auto-polling (`probe42/handlers.js`).
+
+### Endpoint 8 — Reference document
+
+```
+GET /companies/{cin}/reference-document-by-id?doc-id=<id>
+```
+Pulls an MCA reference PDF (e.g. a credit-rating rationale). `doc-id`s come from the
+`document_list_token` / relevant sections of the comprehensive response.
 
 ---
 
