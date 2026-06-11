@@ -514,6 +514,25 @@ Other records for the same entity included an **NCLT IBC admission of ₹1,49,20
 > Parse with `/(?:rs\.?|inr|₹)\s*([\d][\d,]*(?:\.\d+)?)/gi` and strip commas (see
 > `watchout/normalize.js → extractAmounts`).
 
+## 2.9 Observed values & formats (from real responses)
+
+- **Date format:** `DD-Mon-YYYY` (e.g. `31-Oct-2022`) — note this differs from Probe42's ISO
+  `YYYY-MM-DD`. Normalize when merging.
+- **`Defaulter_Code`** groups records by entity/person (Unimark's records mostly shared
+  `C0334605`) — useful as a stable per-defaulter key.
+- **`Regulator_Competent_Authority_Name`** is a short code/label. Real values seen in one entity's
+  6 records: `BANKS`, `EPFO`, `BSE`, `NCLT`, `NSDL` (and `SEBI` for a director record) — out of
+  the ~35 covered regulators/agencies. Treat as an open vocabulary, not an enum.
+- **`PAN_CIN_DIN`** is often **empty** on a record and, when present, is **prefixed**
+  (`PAN:AAACU0589R`). Don't rely on it for matching — search by name.
+- **Action text is uppercase** and contains the financial figure + the counterparty + the order
+  date, e.g. `SUIT FILED- RS.48,21,31,894; BANK OF MAHARASHTRA (ORDER DATED:31-OCT-2022)`.
+- **`Regulatory_Charges`** is the category (`WILFUL DEFAULTER`, `VIOLATED SEBI (DELISTING …)
+  REGULATIONS 2009`, `DEFAULTED IN MAKING PAYMENT OF DUES`, …); **`Regulatory_Actions`** is the
+  consequence (suit amount, delisting, ISIN freeze, market ban, IBC admission amount).
+- **`Further_Development*`** carries the post-order trail (appeals, stays, "not appearing in the
+  list for month ended …", NCLAT set-asides) — important for current-status, not just history.
+
 ---
 
 # Part 3 — Hard-won behaviours (read before integrating)
