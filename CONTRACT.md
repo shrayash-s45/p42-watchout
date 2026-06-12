@@ -552,6 +552,13 @@ Other records for the same entity included an **NCLT IBC admission of ₹1,49,20
    IP not whitelisted / VPN) otherwise hangs the whole flow.
 7. **Watchout requires IP whitelisting** — if every TCP connection times out, the egress IP isn't
    whitelisted (check VPN). DNS resolving but connect timing out = firewall/whitelist.
+8. **Deployment: the SERVER's egress IP must be whitelisted by PRIME.** This gates *everything* on
+   `watchoutinvestors.com` — both the API **and** the source PDFs (`Regulatory_Action_Source*`). If
+   you move the deployment to a new host (cloud VM, serverless region, etc.), whitelist that host's
+   egress IP first or both the API and the documents stop working.
+9. **Source PDFs are whitelist-gated too — proxy them.** Browsers on non-whitelisted IPs can't open
+   `watchoutinvestors.com` PDFs directly. Route them through the whitelisted server
+   (`GET /api/watchout/doc?url=…`, host-allowlisted to prevent SSRF) so any viewer can open them.
 
 ---
 
