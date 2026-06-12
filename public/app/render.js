@@ -3,7 +3,7 @@
 // tabs (Header · Submodule 1 · Submodule 2 · Gap Summary · All data), with a
 // provenance chip on every value and a GAP chip on every unfillable cell.
 
-import { esc, chip, valueCell, gapCell, badge, crVal } from "./legalAdapter.js";
+import { esc, chip, valueCell, gapCell, badge, crVal, docHref } from "./legalAdapter.js";
 
 export function renderReport(data) {
   if (data.ok === false && data.code === "NOT_PROBED") {
@@ -143,7 +143,7 @@ function watchoutFinancialBlock(s1) {
       <td>${esc(r.charges || "—")}</td>
       <td>${esc(r.actions || "—")}${(r.developments || []).length ? `<div class="note">↳ ${esc(r.developments[0].text)}</div>` : ""}</td>
       <td>${r.amountCr != null ? `<b>₹${r.amountCr} Cr</b>` : "—"}</td>
-      <td>${(r.sources || []).map((u, i) => `<a href="${esc(u)}" target="_blank">PDF${i + 1}</a>`).join(" ") || "—"}</td>
+      <td>${(r.sources || []).map((u, i) => `<a href="${esc(docHref(u))}" target="_blank" rel="noopener">PDF${i + 1}</a>`).join(" ") || "—"}</td>
     </tr>`).join("")}</tbody>
   </table>
   <div class="ftn">Total flagged financial exposure (sum of parsed amounts): <b>₹${totalCr.toFixed(2)} Cr</b> ${chip("WATCHOUT")} <span class="note" style="display:inline">— amounts parsed from the action text; verify against source PDFs.</span></div>`;
@@ -408,11 +408,11 @@ function watchoutRecordCard(r, i) {
     .join("");
 
   const sources = (r.sources || r.actionSources || []).length
-    ? `<div class="note"><b>Sources:</b> ${(r.sources || r.actionSources).map((u, n) => `<a href="${esc(u)}" target="_blank">PDF${n + 1}</a>`).join(" ")}</div>`
+    ? `<div class="note"><b>Sources:</b> ${(r.sources || r.actionSources).map((u, n) => `<a href="${esc(docHref(u))}" target="_blank" rel="noopener">PDF${n + 1}</a>`).join(" ")}</div>`
     : "";
 
   const devs = (r.developments || []).length
-    ? `<div class="note"><b>Further developments (${r.developments.length}):</b><ul>${r.developments.map((d) => `<li>${esc(d.text)}${d.source ? ` <a href="${esc(d.source)}" target="_blank">[src]</a>` : ""}</li>`).join("")}</ul></div>`
+    ? `<div class="note"><b>Further developments (${r.developments.length}):</b><ul>${r.developments.map((d) => `<li>${esc(d.text)}${d.source ? ` <a href="${esc(docHref(d.source))}" target="_blank" rel="noopener">[src]</a>` : ""}</li>`).join("")}</ul></div>`
     : "";
 
   return `<div class="block"><div class="bhead"><h3>Record ${i + 1} — ${esc(r.regulator || "—")} · ${esc(r.orderDate || "")}</h3><div class="right">${chip("WATCHOUT")}</div></div>

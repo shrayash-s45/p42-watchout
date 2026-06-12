@@ -70,6 +70,35 @@ app.post("/api/watchout/entity", async (req, res) => {
 });
 app.get("/api/watchout/usage", (_req, res) => res.json(usage()));
 
+// Document proxy — source PDFs live on watchoutinvestors.com, which only serves
+// WHITELISTED IPs. The browser (any IP) can't fetch them directly, so the
+// (whitelisted) server fetches and streams them. Host-allowlisted to prevent SSRF.
+app.get("/api/watchout/doc", async (req, res) => {
+  const raw = req.query.url;
+  if (!raw) return res.status(400).json({ error: "url query param required" });
+  let u;
+  try {
+    u = new URL(raw);
+  } catch {
+    return res.status(400).json({ error: "invalid url" });
+  }
+  const host = u.hostname.toLowerCase();
+  if (host !== "watchoutinvestors.com" && host !== "www.watchoutinvestors.com") {
+    return res.status(400).json({ error: "host not allowed" });
+  }
+  try {
+    const upstream = await fetch(u.toString(), { signal: AbortSignal.timeout(30000) });
+    if (!upstream.ok) return res.status(502).json({ error: `upstream ${upstream.status}` });
+    const buf = Buffer.from(await upstream.arrayBuffer());
+    res.setHeader("Content-Type", upstream.headers.get("content-type") || "application/pdf");
+    res.setHeader("Content-Disposition", "inline");
+    res.setHeader("Cache-Control", "private, max-age=3600");
+    res.send(buf);
+  } catch (e) {
+    res.status(504).json({ error: `fetch failed: ${e.message}` });
+  }
+});
+
 // Sandbox entity list for the picker (confidential — only served locally).
 app.get("/api/sandbox-entities", (_req, res) => {
   res.json(getSandboxEntities());

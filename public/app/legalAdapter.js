@@ -59,3 +59,19 @@ export function badge(tone, label, title) {
 export function crVal(n) {
   return n == null ? "—" : `₹${Number(n).toFixed(2)} Cr`;
 }
+
+// Route watchoutinvestors.com PDFs through our server proxy, since that host
+// only serves whitelisted IPs — the browser can't fetch them directly. Other
+// URLs pass through unchanged.
+export function docHref(url) {
+  if (!url) return "#";
+  try {
+    const h = new URL(url, location.origin).hostname.toLowerCase();
+    if (h === "watchoutinvestors.com" || h === "www.watchoutinvestors.com") {
+      return `/api/watchout/doc?url=${encodeURIComponent(url)}`;
+    }
+  } catch {
+    /* not an absolute URL — leave as-is */
+  }
+  return url;
+}

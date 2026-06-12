@@ -121,6 +121,8 @@ Never commit (these are gitignored):
 - `GET /api/sandbox-entities` — sandbox picker list (empty if the confidential file is absent)
 - Granular (live): `GET /api/probe/search`, `POST /api/probe/update`, `GET /api/probe/update-status`,
   `POST /api/watchout/director`, `POST /api/watchout/entity`, `GET /api/watchout/usage`
+- `GET /api/watchout/doc?url=…` — proxies a `watchoutinvestors.com` source PDF through the
+  (whitelisted) server so any browser can open it; host-allowlisted (anti-SSRF)
 
 ---
 
