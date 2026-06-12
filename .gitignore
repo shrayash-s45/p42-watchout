@@ -19,6 +19,10 @@ watchoutinvestors.com Encrypted API Documentation.pdf
 *.p12
 *.keystore
 
+# ── Saved API response dumps (local artifacts; feature ships, dumps don't) ──
+responses/*
+!responses/.gitkeep
+
 # ── OS / editor / build noise ──
 .DS_Store
 *.log

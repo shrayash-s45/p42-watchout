@@ -4,6 +4,7 @@
 // parsed JSON `data`/`metadata` envelope or throws a typed Probe42Error.
 
 import { assertProbe42Configured } from "./config.js";
+import { dump } from "../lib/recorder.js";
 
 export class Probe42Error extends Error {
   constructor(message, { status, code, body } = {}) {
@@ -74,11 +75,24 @@ async function request(path, { method = "GET", base = "core", body } = {}) {
 
   if (!res.ok) {
     const code = classify(res.status, parsed);
+    dump("probe42", `${method}-${path}`, {
+      request: { method, path, base },
+      ok: false,
+      status: res.status,
+      code,
+      response: parsed,
+    });
     throw new Probe42Error(
       `Probe42 ${method} ${path} → ${res.status} (${code})`,
       { status: res.status, code, body: parsed }
     );
   }
+  dump("probe42", `${method}-${path}`, {
+    request: { method, path, base },
+    ok: true,
+    status: res.status,
+    response: parsed,
+  });
   return parsed;
 }
 

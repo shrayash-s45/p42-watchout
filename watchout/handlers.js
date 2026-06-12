@@ -7,6 +7,7 @@
 import { search, WatchoutLimitError } from "./client.js";
 import { normalizeRecords } from "./normalize.js";
 import { PRIME } from "./config.js";
+import { dump } from "../lib/recorder.js";
 
 // Uniform envelope:
 //   { status: "ok"|"none"|"limited"|"error", code, records[], note }
@@ -29,19 +30,20 @@ function envelope(result) {
 }
 
 async function run(params) {
+  // `params` carries only the search inputs (type/searchType/name) — no secrets.
+  const label = `${params.type || ""}-${params.searchType || ""}-${params.name || params.panCinDin || ""}`;
+  let result;
   try {
-    return envelope(await search(params));
+    result = envelope(await search(params));
   } catch (err) {
     if (err instanceof WatchoutLimitError) {
-      return {
-        status: "limited",
-        code: err.code,
-        records: [],
-        note: `Local rate guard: ${err.message}`,
-      };
+      result = { status: "limited", code: err.code, records: [], note: `Local rate guard: ${err.message}` };
+    } else {
+      result = { status: "error", code: err.code || "ERROR", records: [], note: err.message };
     }
-    return { status: "error", code: err.code || "ERROR", records: [], note: err.message };
   }
+  dump("watchout", `search-${label}`, { request: params, ...result });
+  return result;
 }
 
 // Session cache: Watchout matches reliably by NAME (IDs are stored prefixed,

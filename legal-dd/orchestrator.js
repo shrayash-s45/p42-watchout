@@ -13,6 +13,7 @@ import { buildSubmodule1 } from "./submodule1.js";
 import { buildSubmodule2 } from "./submodule2.js";
 import { gapSummary } from "./gaps.js";
 import { getFixture } from "../fixtures/index.js";
+import { dump } from "../lib/recorder.js";
 
 function buildHeader(profile) {
   const h = profile?.header || {};
@@ -159,6 +160,12 @@ export async function runLegalDD({
   const submodule2 = buildSubmodule2(profile, { asOf, tuning, useWatchout, watchoutByDin });
 
   const { usage } = await import("../watchout/ratelimit.js");
+
+  // Per-Load snapshot of the full assembled result (one file per Load click).
+  dump("legal-dd", `${identifier || "load"}-watchout-${useWatchout ? "on" : "off"}`, {
+    request: { entityType, identifier, idType, useWatchout },
+    raw: { probe42: profile._raw, watchout: { byDin: watchoutByDin, entity: watchoutEntity } },
+  });
 
   return assemble({
     meta: { ...meta, watchoutUnreachable },

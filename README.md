@@ -96,6 +96,22 @@ _Full detail, endpoints, and working examples in [`CONTRACT.md`](CONTRACT.md)._
 
 ---
 
+## Response logging
+
+Every **live** Probe42 and Watchout API response is auto-saved to `responses/` (one file per
+call, plus a per-Load snapshot under `responses/legal-dd/`). The folder is **gitignored** — the
+feature ships, the dumps stay local. Toggle with `DUMP_RESPONSES=false`. Watchout login tokens
+are redacted.
+
+```
+responses/
+  probe42/    2026-…__GET--companies-<cin>-comprehensive-details.json
+  watchout/   2026-…__search-C-E-UNIMARK-REMEDIES.json   ·   2026-…__login.json
+  legal-dd/   2026-…__<identifier>-watchout-on.json       (full per-Load snapshot)
+```
+
+---
+
 ## Security
 
 **All Probe42 / Watchout secrets are server-side. The browser only ever calls `/api/*`.**

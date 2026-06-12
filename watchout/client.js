@@ -8,6 +8,7 @@
 import { assertWatchoutConfigured, PRIME, LIMIT_CODES } from "./config.js";
 import { encrypt, decrypt } from "./crypto.js";
 import { acquireSlot, WatchoutLimitError } from "./ratelimit.js";
+import { dump } from "../lib/recorder.js";
 
 export class WatchoutError extends Error {
   constructor(message, { code, status, body } = {}) {
@@ -65,6 +66,7 @@ async function login() {
   }
   jwt = tok;
   jwtAt = Date.now();
+  dump("watchout", "login", { ok: true, status: res.status, token: "[REDACTED]" });
   return jwt;
 }
 
