@@ -1,0 +1,17 @@
+{
+  "source": "watchout",
+  "slug": "entity_winsome_diamonds",
+  "note": "Winsome/Jatin Mehta — ED/CBI/banks",
+  "capturedAt": "2026-06-15T11:02:29.720Z",
+  "request": {
+    "kind": "entity",
+    "type": "C",
+    "searchType": "E",
+    "name": "WINSOME DIAMONDS"
+  },
+  "status": "error",
+  "code": "A500",
+  "recordCount": 0,
+  "records": [],
+  "envelopeNote": "Watchout error code."
+}

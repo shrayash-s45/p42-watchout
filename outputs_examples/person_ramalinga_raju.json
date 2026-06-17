@@ -1,0 +1,17 @@
+{
+  "source": "watchout",
+  "slug": "person_ramalinga_raju",
+  "note": "Satyam — SEBI/CBI/SFIO",
+  "capturedAt": "2026-06-15T10:57:29.876Z",
+  "request": {
+    "kind": "person",
+    "type": "P",
+    "searchType": "E",
+    "name": "RAMALINGA RAJU"
+  },
+  "status": "error",
+  "code": "A500",
+  "recordCount": 0,
+  "records": [],
+  "envelopeNote": "Watchout error code."
+}

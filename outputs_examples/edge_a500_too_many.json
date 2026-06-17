@@ -1,0 +1,17 @@
+{
+  "source": "watchout",
+  "slug": "edge_a500_too_many",
+  "note": "expect A500 — >250 records",
+  "capturedAt": "2026-06-15T10:56:41.163Z",
+  "request": {
+    "kind": "entity",
+    "type": "C",
+    "searchType": "E",
+    "name": "INFRASTRUCTURE"
+  },
+  "status": "error",
+  "code": "A500",
+  "recordCount": 0,
+  "records": [],
+  "envelopeNote": "Watchout error code."
+}

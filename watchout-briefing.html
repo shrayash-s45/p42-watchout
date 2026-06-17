@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Watchout Investors — Response & Limitations Briefing</title>
+<style>
+  :root{
+    --bg:#f6f5f2; --panel:#fff; --ink:#1b1e21; --ink2:#41474d; --muted:#727880;
+    --line:#e6e3dc; --line2:#d8d4ca; --accent:#1f3a4d; --accent2:#2b5970;
+    --ok:#1f6b3a; --ok-bg:#e7f3ea; --ok-bd:#bfddc9;
+    --amber:#9a5b09; --amber-bg:#fcf1de; --amber-bd:#ecd2a3;
+    --crit:#9b1c1c; --crit-bg:#fbe9e9; --crit-bd:#f0c2c2;
+    --info:#1d4e7b; --info-bg:#e7eff7; --info-bd:#bcd2e6;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em}
+  .wrap{max-width:940px;margin:0 auto;padding:40px 28px 80px}
+
+  header.top{border-bottom:2px solid var(--accent);padding-bottom:18px;margin-bottom:8px}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent2);font-weight:700}
+  h1{font-size:30px;line-height:1.2;margin:8px 0 6px;letter-spacing:-.02em}
+  .sub{color:var(--muted);font-size:14.5px;max-width:700px}
+  .meta{margin-top:12px;font-size:12.5px;color:var(--muted)}
+
+  h2{font-size:20px;margin:46px 0 6px;letter-spacing:-.01em;color:var(--accent)}
+  h2 .n{color:var(--line2);font-weight:800;margin-right:10px}
+  h3{font-size:15.5px;margin:22px 0 6px}
+  p{margin:8px 0} .lead{font-size:16px;color:var(--ink2)}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,.02)}
+  .card.tl{border-left:4px solid var(--accent2)}
+
+  .chip{display:inline-block;padding:2px 9px;border-radius:99px;font-size:11px;font-weight:800;letter-spacing:.04em;border:1px solid transparent;vertical-align:middle;white-space:nowrap}
+  .c-ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok-bd)}
+  .c-amber{background:var(--amber-bg);color:var(--amber);border-color:var(--amber-bd)}
+  .c-crit{background:var(--crit-bg);color:var(--crit);border-color:var(--crit-bd)}
+  .c-info{background:var(--info-bg);color:var(--info);border-color:var(--info-bd)}
+  .pill{display:inline-block;padding:1px 7px;border-radius:5px;font-size:11px;font-weight:700;background:#eee9df;color:#5d5849;border:1px solid #ddd6c8}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700;background:#faf8f3}
+  tr:last-child td{border-bottom:none}
+  td.num{font-weight:700;white-space:nowrap;text-align:center}
+  caption{caption-side:top;text-align:left;font-weight:700;font-size:13.5px;color:var(--ink2);padding:10px 0 4px}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:10px 0 4px}
+  @media(max-width:680px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:#fbfaf6;border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-align:center}
+  .kpi .v{font-size:24px;font-weight:800;line-height:1}
+  .kpi .l{font-size:11.5px;color:var(--muted);margin-top:6px}
+  .kpi.ok .v{color:var(--ok)} .kpi.amber .v{color:var(--amber)} .kpi.crit .v{color:var(--crit)} .kpi.info .v{color:var(--info)}
+
+  .rec{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:10px 0}
+  .rec .h{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 14px;background:#faf8f3;border-bottom:1px solid var(--line);font-weight:700;font-size:13.5px}
+  .rec .b{padding:12px 14px;font-size:13.5px}
+  .rec .b .row{display:flex;gap:10px;margin:3px 0}
+  .rec .b .k{flex:0 0 92px;color:var(--muted);font-size:12.5px}
+  .amt{font-weight:800;color:var(--crit)}
+
+  .evi{font-size:12.5px;color:var(--ink2);background:#faf8f3;border:1px dashed var(--line2);border-radius:8px;padding:8px 12px;margin-top:8px}
+  .evi b{color:var(--ink)}
+  ul{margin:8px 0;padding-left:22px} li{margin:4px 0}
+
+  details{margin:8px 0;border:1px solid var(--line);border-radius:8px;background:#fcfbf8}
+  summary{cursor:pointer;padding:9px 13px;font-size:12.5px;font-weight:700;color:var(--accent2)}
+  details pre{margin:0;padding:0 14px 12px;overflow:auto;font-size:11.5px;line-height:1.45;color:#34404a}
+  footer{margin-top:50px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">Vendor Data Assessment · Confidential</div>
+    <h1>Watchout Investors — what the API returns, and its limitations</h1>
+    <p class="sub">A plain-English record of the responses the Watchout Investors (PRIME) regulatory-defaulter API
+       returned during live testing — what comes back, in what form, and the limitations observed.</p>
+    <div class="meta">Captured from real API responses, June 2026 · sandbox/test credentials · 17 queries logged below.</div>
+  </header>
+
+  <!-- ============ KEY FINDINGS ============ -->
+  <h2><span class="n">01</span>Key findings</h2>
+  <div class="card tl">
+    <p class="lead">When a query lands, the content is rich and specific — regulator, order date, charges, action,
+       often the ₹ amount, the source-order PDF, and a dated case-history trail. The limitations are in <b>how it can be
+       queried</b> and <b>what it will return</b>:</p>
+    <ul>
+      <li><b>It cannot be searched by CIN or DIN.</b> Identifier lookups return “no record” even for entities that are in the registry by name.</li>
+      <li><b>Search is by name only — and a name search returns many different people/firms, with no way to confirm which one is your subject.</b></li>
+      <li><b>Large / high-profile defaulters frequently return <span class="chip c-crit">A500</span> — more than 250 matches, and the API then returns <i>nothing</i>.</b> There is no pagination.</li>
+      <li><b>Identifier coverage inside records is inconsistent</b> — some entities’ records carry CIN+PAN, others carry none.</li>
+      <li><b>Financial amounts are embedded in free text</b>, not structured fields.</li>
+    </ul>
+    <div class="legend">
+      <span class="chip c-ok">A100 = records returned</span>
+      <span class="chip c-info">A200 = no record found</span>
+      <span class="chip c-crit">A500 = &gt;250 matches, nothing returned</span>
+      <span class="chip c-amber">A210 = query rejected</span>
+    </div>
+  </div>
+
+  <!-- ============ WHAT A RECORD CONTAINS ============ -->
+  <h2><span class="n">02</span>What a returned record contains</h2>
+  <p>A successful company search for <b>Unimark Remedies Ltd</b> returned <b>6 records</b> across five authorities:</p>
+  <div class="rec">
+    <div class="h"><span>Unimark Remedies Ltd</span><span class="chip c-ok">A100 · 6 records</span></div>
+    <div class="b">
+      <div class="row"><div class="k">Bank</div><div><b>Bank of Maharashtra</b> · <span class="pill">Wilful Defaulter</span> · Suit filed <span class="amt">₹48.21 Cr</span> · 31-Oct-2022</div></div>
+      <div class="row"><div class="k">NCLT</div><div>IBC application admitted · <span class="amt">₹149.21 Cr</span> · 03-Apr-2018</div></div>
+      <div class="row"><div class="k">SEBI / BSE</div><div>Compulsory delisting + market ban (2018→2028) · 09-May-2018</div></div>
+      <div class="row"><div class="k">EPFO</div><div>Provident-fund / pension default · 14-Oct-2022</div></div>
+      <div class="row"><div class="k">NSDL</div><div>ISIN frozen per SEBI order · 30-Sep-2013</div></div>
+    </div>
+  </div>
+  <details>
+    <summary>View a raw record (Bank of Maharashtra, verbatim from the API)</summary>
+<pre>{
+  "Record_ID": "BNKR267329",
+  "Regulator_Competent_Authority_Name": "BANKS",
+  "Order_Date": "31-Oct-2022",
+  "Defaulter_Name": "UNIMARK REMEDIES LTD.",
+  "Defaulter_Type_Company_Person": "C",
+  "Regulatory_Charges": "WILFUL DEFAULTER",
+  "Regulatory_Actions": "SUIT FILED- RS.48,21,31,894; BANK OF MAHARASHTRA (ORDER DATED:31-OCT-2022)",
+  "Regulatory_Action_Source1": "http://www.watchoutinvestors.com/Press_Rel-T/bank/EQUIFAX_OCT-2022.pdf",
+  "Further_Development1": "NOT APPEARING IN THE LIST FOR THE MONTH ENDED 30-NOV-2022",
+  "PAN_CIN_DIN": null
+}</pre>
+  </details>
+
+  <!-- ============ RESPONSE CATALOG ============ -->
+  <h2><span class="n">03</span>Full response catalog — every query we ran</h2>
+  <div class="kpis">
+    <div class="kpi ok"><div class="v">5</div><div class="l">returned records (A100)</div></div>
+    <div class="kpi info"><div class="v">5</div><div class="l">no record (A200)</div></div>
+    <div class="kpi crit"><div class="v">7</div><div class="l">&gt;250, nothing (A500)</div></div>
+    <div class="kpi"><div class="v">17</div><div class="l">total queries</div></div>
+  </div>
+
+  <div class="card">
+    <table>
+      <caption>A · Companies searched by name</caption>
+      <thead><tr><th>Company name searched</th><th>Records</th><th>Result</th><th>Context</th></tr></thead>
+      <tbody>
+        <tr><td><b>Unimark Remedies</b></td><td class="num">6</td><td><span class="chip c-ok">A100</span></td><td>Wilful defaulter, IBC, SEBI delisting, EPFO</td></tr>
+        <tr><td><b>SREI Infrastructure Finance</b></td><td class="num">9</td><td><span class="chip c-ok">A100</span></td><td>RBI board supersession / NCLT / SEBI</td></tr>
+        <tr><td><b>Ricoh India</b></td><td class="num">7</td><td><span class="chip c-ok">A100</span></td><td>SEBI financial-misstatement; delistings</td></tr>
+        <tr><td>ACC India Private Limited</td><td class="num">0</td><td><span class="chip c-info">A200</span></td><td>No record under this name</td></tr>
+        <tr><td>Rotomac</td><td class="num">0</td><td><span class="chip c-crit">A500</span></td><td>CBI/ED bank fraud — &gt;250 matches</td></tr>
+        <tr><td>Sterling Biotech</td><td class="num">0</td><td><span class="chip c-crit">A500</span></td><td>Sandesara — ED/CBI fraud — &gt;250</td></tr>
+        <tr><td>Sterling SEZ</td><td class="num">0</td><td><span class="chip c-crit">A500</span></td><td>Sandesara — ED/PMLA — &gt;250</td></tr>
+        <tr><td>Winsome Diamonds</td><td class="num">0</td><td><span class="chip c-crit">A500</span></td><td>Jatin Mehta — ED/CBI/banks — &gt;250</td></tr>
+        <tr><td>Deccan Chronicle</td><td class="num">0</td><td><span class="chip c-crit">A500</span></td><td>SEBI / IBC — &gt;250 matches</td></tr>
+        <tr><td>“INFRASTRUCTURE” (generic word)</td><td class="num">0</td><td><span class="chip c-crit">A500</span></td><td>Common word → &gt;250 matches</td></tr>
+      </tbody>
+    </table>
+
+    <table style="margin-top:18px">
+      <caption>B · Persons searched by name</caption>
+      <thead><tr><th>Person name searched</th><th>Records</th><th>Result</th><th>Context</th></tr></thead>
+      <tbody>
+        <tr><td><b>Indu Bhushan</b></td><td class="num">7</td><td><span class="chip c-ok">A100</span></td><td>7 matches — <b>different individuals</b> (see §4①)</td></tr>
+        <tr><td>Ramalinga Raju</td><td class="num">0</td><td><span class="chip c-crit">A500</span></td><td>Satyam — SEBI/CBI/SFIO — &gt;250 matches</td></tr>
+        <tr><td>Jitesh Rameshchandra Khokhani</td><td class="num">0</td><td><span class="chip c-info">A200</span></td><td>Unimark director — not in registry</td></tr>
+        <tr><td>Mehul Jayant Parekh</td><td class="num">0</td><td><span class="chip c-info">A200</span></td><td>Unimark promoter — not in registry</td></tr>
+      </tbody>
+    </table>
+
+    <table style="margin-top:18px">
+      <caption>C · Searches by identifier (CIN / DIN / PAN)</caption>
+      <thead><tr><th>Identifier searched</th><th>Records</th><th>Result</th><th>Context</th></tr></thead>
+      <tbody>
+        <tr><td>Unimark by <b>CIN</b> <span class="mono">U23200MH1993PLC075373</span></td><td class="num">0</td><td><span class="chip c-info">A200</span></td><td>In registry by name (6 recs) — CIN finds nothing</td></tr>
+        <tr><td>Director by <b>DIN</b> <span class="mono">09302960</span></td><td class="num">0</td><td><span class="chip c-info">A200</span></td><td>DIN finds nothing</td></tr>
+        <tr><td>Unimark by <b>PAN</b> <span class="mono">AAACU0589R</span></td><td class="num">1</td><td><span class="chip c-ok">A100</span></td><td>Only 1 of Unimark’s 6 records carries this PAN</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============ CAVEATS ============ -->
+  <h2><span class="n">04</span>The limitations — with evidence</h2>
+
+  <!-- C1 — NAME SEARCH (lead) -->
+  <div class="card">
+    <h3>① A name search returns many names — and you cannot verify which one is your subject <span class="chip c-crit">primary limitation</span></h3>
+    <p>Because lookups are by name and there is no working identifier filter, a search returns <b>every defaulter whose
+       name contains your text</b> — frequently many different people or firms. Most records carry <b>no CIN / DIN / PAN</b>,
+       so there is <b>no reliable way to confirm which match (if any) is the entity you are investigating</b>.</p>
+    <p>Live example — searching the director <b>“Indu Bhushan”</b> returned <span class="chip c-ok">A100 · 7 records</span>,
+       but they are small personal loan-default notices (<span class="amt">₹4.5L–₹75L</span>, “along with other
+       entities/persons”) belonging to <b>different individuals</b> — none is the director we were checking, and not one
+       record carried a DIN to settle it.</p>
+    <div class="evi">A common name compounds this: the more common the name, the more unrelated matches you get, and the
+       less able you are to tell them apart. A name match is a <b>lead</b>, not a confirmed identification.</div>
+  </div>
+
+  <!-- C2 -->
+  <div class="card">
+    <h3>② You cannot search by CIN or DIN <span class="chip c-crit">structural gap</span></h3>
+    <p>Looking up an exact company/director by its registered number does not work — identifier searches return
+       <span class="chip c-info">A200 (no record)</span> even for entities that <i>are</i> in the registry by name.</p>
+    <table>
+      <thead><tr><th>Search</th><th>Identifier</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Unimark — by <b>CIN</b></td><td class="mono">U23200MH1993PLC075373</td><td><span class="chip c-info">A200 · nothing</span></td></tr>
+        <tr><td>Director — by <b>DIN</b></td><td class="mono">09302960</td><td><span class="chip c-info">A200 · nothing</span></td></tr>
+        <tr><td>Unimark — by its stored <b>PAN</b></td><td class="mono">AAACU0589R</td><td><span class="chip c-ok">A100 · only 1 of 6 records</span></td></tr>
+      </tbody>
+    </table>
+    <div class="evi"><b>Why:</b> the identifier field is filled only sporadically, and when present it is usually a PAN — rarely a CIN, almost never a DIN.</div>
+  </div>
+
+  <!-- C3 -->
+  <div class="card">
+    <h3>③ Identifier coverage inside records is inconsistent <span class="chip c-amber">data quality</span></h3>
+    <p>How many records carry a usable identifier varies completely from one company to the next:</p>
+    <table>
+      <thead><tr><th>Company (by name)</th><th>Records</th><th>Records carrying an identifier</th></tr></thead>
+      <tbody>
+        <tr><td>SREI Infrastructure Finance</td><td class="num">9</td><td><b>8 of 9</b> carry <span class="mono">CIN + PAN</span> <span class="chip c-ok">good</span></td></tr>
+        <tr><td>Unimark Remedies</td><td class="num">6</td><td><b>1 of 6</b> (PAN only) <span class="chip c-amber">patchy</span></td></tr>
+        <tr><td>Ricoh India</td><td class="num">7</td><td><b>0 of 7</b> <span class="chip c-crit">none</span></td></tr>
+      </tbody>
+    </table>
+    <div class="evi">Same API, same query type — one company hands over the CIN on nearly every row, the next gives nothing.</div>
+  </div>
+
+  <!-- C4 -->
+  <div class="card">
+    <h3>④ The highest-profile defaulters return <span class="chip c-crit">A500</span> — nothing usable</h3>
+    <p>Because they are large and heavily litigated, the marquee cases exceed the 250-record ceiling and the API then
+       returns <b>zero data, with no pagination</b>. Of the names below, every one came back empty:</p>
+    <table>
+      <thead><tr><th>Name searched</th><th>Why it matters</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>Rotomac</td><td>CBI/ED bank fraud</td><td><span class="chip c-crit">A500 · nothing</span></td></tr>
+        <tr><td>Sterling Biotech</td><td>Sandesara — ED/CBI fraud</td><td><span class="chip c-crit">A500 · nothing</span></td></tr>
+        <tr><td>Sterling SEZ</td><td>ED / PMLA attachment</td><td><span class="chip c-crit">A500 · nothing</span></td></tr>
+        <tr><td>Winsome Diamonds</td><td>Jatin Mehta — ED/CBI/banks</td><td><span class="chip c-crit">A500 · nothing</span></td></tr>
+        <tr><td>Deccan Chronicle</td><td>SEBI / IBC</td><td><span class="chip c-crit">A500 · nothing</span></td></tr>
+        <tr><td>Ramalinga Raju (person)</td><td>Satyam — SEBI/CBI/SFIO</td><td><span class="chip c-crit">A500 · nothing</span></td></tr>
+      </tbody>
+    </table>
+    <div class="evi">The cases of greatest interest are often the ones the API will not hand over.</div>
+  </div>
+
+  <!-- C5 -->
+  <div class="card">
+    <h3>⑤ Financial amounts are buried in free text <span class="chip c-amber">parsing needed</span></h3>
+    <p>The ₹ figures are not structured fields — they sit inside the action sentence, e.g.
+       <span class="mono">“SUIT FILED- RS.48,21,31,894; BANK OF MAHARASHTRA”</span> or
+       <span class="mono">“IMPOSED PENALTY RS.35,00,000”</span>. Extracting a clean number requires parsing, and the
+       wording varies. Dates are formatted <span class="mono">DD-Mon-YYYY</span>.</p>
+  </div>
+
+  <!-- C6 -->
+  <div class="card">
+    <h3>⑥ Operational constraints <span class="chip c-info">access &amp; reliability</span></h3>
+    <ul>
+      <li><b>IP whitelisting:</b> the API and its source-document PDFs respond only to pre-registered IP addresses; from any other network the service is unreachable.</li>
+      <li><b>Rate limits:</b> 6 calls/minute · 350/day (peak) · 50,000/month.</li>
+      <li><b>Repeat-query flakiness:</b> an identical query that returned records once occasionally came back empty on an immediate re-run.</li>
+    </ul>
+  </div>
+
+  <!-- ============ EVIDENCE ============ -->
+  <h2><span class="n">05</span>Evidence appendix</h2>
+  <p style="font-size:13.5px;color:var(--ink2)">Captured directly from the live API. Identifiers and amounts reproduced verbatim.</p>
+
+  <details>
+    <summary>SREI Infrastructure Finance — a record that DOES carry CIN + PAN (A100)</summary>
+<pre>{
+  "Regulator_Competent_Authority_Name": "SEBI",
+  "Order_Date": "31-Oct-2022",
+  "Defaulter_Name": "SREI INFRASTRUCTURE FINANCE LIMITED",
+  "Regulatory_Charges": "INDULGED IN DIVERSION OF FUNDS OF RS.2,473.66 CRORE ...",
+  "Regulatory_Actions": "IMPOSED PENALTY RS.35,00,000 (ORDER DATED:31-OCT-2022)",
+  "PAN_CIN_DIN": "CIN:L29219WB1985PLC055352 PAN:AAACS1425L"
+}
+// 8 of SREI's 9 records carry this CIN+PAN — yet a direct CIN search still returns A200.</pre>
+  </details>
+
+  <details>
+    <summary>“Indu Bhushan” person search — 7 name-collision matches (A100)</summary>
+<pre>1. BANKS · 31-Oct-2022 · Demand notice   RS.74,96,178  "ALONG WITH OTHER ENTITIES/PERSONS"
+2. BANKS · 21-Sep-2016 · Possession      RS.34,59,165
+3. BANKS · 15-Sep-2021 · Possession      RS.4,50,660
+4. MCA   · 15-Jun-2005 · Prosecution u/s 560 Companies Act
+5. DRT   · 06-Apr-2016 · Summons, DRT Lucknow
+6. BANKS · 13-Dec-2017 · Possession      RS.28,81,874
+7. BANKS · 28-Oct-2020 · Auction notice, ICICI Bank
+// Small personal loan defaults — different individuals, none the DIN-09302960 director. No DIN on any record.</pre>
+  </details>
+
+  <details>
+    <summary>Identifier-search test results (CIN / DIN / PAN)</summary>
+<pre>COMPANY by CIN  U23200MH1993PLC075373  →  A200  (0 records)   // Unimark — in registry by name (6 recs)
+PERSON  by DIN  09302960               →  A200  (0 records)   // Indu Bhushan — in registry by name (7 recs)
+COMPANY by PAN  AAACU0589R             →  A100  (1 record)    // only 1 of Unimark's 6 records</pre>
+  </details>
+
+  <footer>
+    Watchout Investors (PRIME) response assessment · compiled from live test responses, June 2026 ·
+    For internal evaluation. Identifiers and amounts are reproduced verbatim from API responses for verification.
+  </footer>
+
+</div>
+</body>
+</html>

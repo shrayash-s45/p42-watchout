@@ -1,0 +1,17 @@
+{
+  "source": "watchout",
+  "slug": "entity_sterling_sez",
+  "note": "Sandesara — ED/PMLA attachment",
+  "capturedAt": "2026-06-15T11:02:41.225Z",
+  "request": {
+    "kind": "entity",
+    "type": "C",
+    "searchType": "E",
+    "name": "STERLING SEZ"
+  },
+  "status": "error",
+  "code": "A500",
+  "recordCount": 0,
+  "records": [],
+  "envelopeNote": "Watchout error code."
+}

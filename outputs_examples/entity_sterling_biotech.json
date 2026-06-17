@@ -1,0 +1,17 @@
+{
+  "source": "watchout",
+  "slug": "entity_sterling_biotech",
+  "note": "ED/CBI/banks fraud (Sandesara)",
+  "capturedAt": "2026-06-15T10:56:52.734Z",
+  "request": {
+    "kind": "entity",
+    "type": "C",
+    "searchType": "E",
+    "name": "STERLING BIOTECH"
+  },
+  "status": "error",
+  "code": "A500",
+  "recordCount": 0,
+  "records": [],
+  "envelopeNote": "Watchout error code."
+}

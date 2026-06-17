@@ -1,0 +1,16 @@
+{
+  "source": "watchout",
+  "slug": "edge_a200_acc_clean",
+  "note": "expect A200 — confirms ACC clean by name",
+  "capturedAt": "2026-06-15T10:56:29.517Z",
+  "request": {
+    "kind": "entity",
+    "type": "C",
+    "searchType": "E",
+    "name": "ACC INDIA PRIVATE LIMITED"
+  },
+  "status": "none",
+  "code": "A200",
+  "recordCount": 0,
+  "records": []
+}

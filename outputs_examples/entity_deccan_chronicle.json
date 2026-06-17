@@ -1,0 +1,17 @@
+{
+  "source": "watchout",
+  "slug": "entity_deccan_chronicle",
+  "note": "SEBI/IBC — possible name-change",
+  "capturedAt": "2026-06-15T10:57:41.382Z",
+  "request": {
+    "kind": "entity",
+    "type": "C",
+    "searchType": "E",
+    "name": "DECCAN CHRONICLE"
+  },
+  "status": "error",
+  "code": "A500",
+  "recordCount": 0,
+  "records": [],
+  "envelopeNote": "Watchout error code."
+}
