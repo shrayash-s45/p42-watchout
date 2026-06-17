@@ -118,10 +118,15 @@ responses/
 
 Never commit (these are gitignored):
 - `.env` — API keys, Watchout credentials, AES key
-- `*.confidential.*` — the Probe42 sandbox entity list (STRICTLY CONFIDENTIAL)
+- `*.confidential.*` — anything explicitly marked confidential
 - `*.pdf` — PRIME's proprietary API documentation
 
 `.env.example` is the safe, value-less template that *is* committed. See `.gitignore`.
+
+> **Keep this repo private.** It now includes `fixtures/sandbox-entities.json` — the Probe42
+> sandbox entity list (~150 entities), which Probe marks **STRICTLY CONFIDENTIAL**. It is
+> committed for convenience on the assumption this repo stays private; do not make the repo
+> public or share it outside authorised collaborators.
 
 > The internal spec docs (`01_CONTEXT.md`, `02_API_REFERENCE.md`, `03_BUILD_GUIDE.md`) and the
 > `ACC_mock_module.html` are committed by default — remove them from the repo or add them to
